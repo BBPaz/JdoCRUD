@@ -1,20 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using JdoCRUD.Forms;
 
 namespace JdoCRUD
 {
-    public partial class Form1 : Form
+    public partial class Inicio : Form
     {
-        public Form1()
+        public Inicio()
         {
             InitializeComponent();
+        }
+
+        private void skinsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SkinLista skinLista = new SkinLista();
+            skinLista.ShowDialog();
+            /*try
+            {
+                skinLista.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+                string text = ex.Message;
+            }*/
+            
+        }
+
+        private void visualizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void definirSenhaDoBDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Inicio_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            test test = new test();
+            test.ShowDialog();
         }
     }
 }
