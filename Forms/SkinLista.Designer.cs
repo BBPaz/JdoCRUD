@@ -31,23 +31,23 @@ namespace JdoCRUD.Forms
         {
             this.components = new System.ComponentModel.Container();
             this.skinDataGridView = new System.Windows.Forms.DataGridView();
-            this.imgExibicao = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Cor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Permanente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnNovo = new System.Windows.Forms.Button();
             this.btnDetalhes = new System.Windows.Forms.Button();
             this.btnAtualizar = new System.Windows.Forms.Button();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeSkin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.imagemSkin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ehPermanente = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.tipoPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.corTematica = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.skinBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.jdoDataSet = new JdoCRUD.jdoDataSet();
             this.skinTableAdapter = new JdoCRUD.jdoDataSetTableAdapters.skinTableAdapter();
             this.tableAdapterManager = new JdoCRUD.jdoDataSetTableAdapters.TableAdapterManager();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeSkin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imgExibicao = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Cor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Permanente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imagemSkin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ehPermanente = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tipoPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.corTematica = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.skinDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.skinBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jdoDataSet)).BeginInit();
@@ -77,35 +77,12 @@ namespace JdoCRUD.Forms
             this.skinDataGridView.Location = new System.Drawing.Point(12, 12);
             this.skinDataGridView.Name = "skinDataGridView";
             this.skinDataGridView.ReadOnly = true;
+            this.skinDataGridView.RowTemplate.Height = 50;
             this.skinDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.skinDataGridView.Size = new System.Drawing.Size(647, 411);
             this.skinDataGridView.TabIndex = 1;
             this.skinDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.skinDataGridView_CellContentClick);
             this.skinDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.skinDataGridView_CellDoubleClick);
-            // 
-            // imgExibicao
-            // 
-            this.imgExibicao.HeaderText = "Imagem";
-            this.imgExibicao.Name = "imgExibicao";
-            this.imgExibicao.ReadOnly = true;
-            // 
-            // Cor
-            // 
-            this.Cor.HeaderText = "Cor";
-            this.Cor.Name = "Cor";
-            this.Cor.ReadOnly = true;
-            // 
-            // Tipo
-            // 
-            this.Tipo.HeaderText = "Tipo";
-            this.Tipo.Name = "Tipo";
-            this.Tipo.ReadOnly = true;
-            // 
-            // Permanente
-            // 
-            this.Permanente.HeaderText = "Permanente";
-            this.Permanente.Name = "Permanente";
-            this.Permanente.ReadOnly = true;
             // 
             // btnNovo
             // 
@@ -140,6 +117,29 @@ namespace JdoCRUD.Forms
             this.btnAtualizar.UseVisualStyleBackColor = true;
             this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
             // 
+            // skinBindingSource
+            // 
+            this.skinBindingSource.DataMember = "skin";
+            this.skinBindingSource.DataSource = this.jdoDataSet;
+            // 
+            // jdoDataSet
+            // 
+            this.jdoDataSet.DataSetName = "jdoDataSet";
+            this.jdoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // skinTableAdapter
+            // 
+            this.skinTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.seasonTableAdapter = null;
+            this.tableAdapterManager.skinTableAdapter = this.skinTableAdapter;
+            this.tableAdapterManager.tabuleiroTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = JdoCRUD.jdoDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.vendaTableAdapter = null;
+            // 
             // id
             // 
             this.id.DataPropertyName = "id";
@@ -155,6 +155,31 @@ namespace JdoCRUD.Forms
             this.nomeSkin.Name = "nomeSkin";
             this.nomeSkin.ReadOnly = true;
             this.nomeSkin.Width = 150;
+            // 
+            // imgExibicao
+            // 
+            this.imgExibicao.HeaderText = "Imagem";
+            this.imgExibicao.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.imgExibicao.Name = "imgExibicao";
+            this.imgExibicao.ReadOnly = true;
+            // 
+            // Cor
+            // 
+            this.Cor.HeaderText = "Cor";
+            this.Cor.Name = "Cor";
+            this.Cor.ReadOnly = true;
+            // 
+            // Tipo
+            // 
+            this.Tipo.HeaderText = "Tipo";
+            this.Tipo.Name = "Tipo";
+            this.Tipo.ReadOnly = true;
+            // 
+            // Permanente
+            // 
+            this.Permanente.HeaderText = "Permanente";
+            this.Permanente.Name = "Permanente";
+            this.Permanente.ReadOnly = true;
             // 
             // imagemSkin
             // 
@@ -188,29 +213,6 @@ namespace JdoCRUD.Forms
             this.corTematica.Name = "corTematica";
             this.corTematica.ReadOnly = true;
             this.corTematica.Visible = false;
-            // 
-            // skinBindingSource
-            // 
-            this.skinBindingSource.DataMember = "skin";
-            this.skinBindingSource.DataSource = this.jdoDataSet;
-            // 
-            // jdoDataSet
-            // 
-            this.jdoDataSet.DataSetName = "jdoDataSet";
-            this.jdoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // skinTableAdapter
-            // 
-            this.skinTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.seasonTableAdapter = null;
-            this.tableAdapterManager.skinTableAdapter = this.skinTableAdapter;
-            this.tableAdapterManager.tabuleiroTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = JdoCRUD.jdoDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.vendaTableAdapter = null;
             // 
             // SkinLista
             // 

@@ -33,6 +33,7 @@ namespace JdoCRUD
             this.visualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skinsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabuleirosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,11 +51,12 @@ namespace JdoCRUD
             // 
             this.visualizarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.skinsToolStripMenuItem,
+            this.tabuleirosToolStripMenuItem,
             this.testToolStripMenuItem});
             this.visualizarToolStripMenuItem.Name = "visualizarToolStripMenuItem";
             this.visualizarToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
             this.visualizarToolStripMenuItem.Text = "Visualizar";
-            this.visualizarToolStripMenuItem.Click += new System.EventHandler(this.visualizarToolStripMenuItem_Click);
+            //this.visualizarToolStripMenuItem.Click += new System.EventHandler(this.visualizarToolStripMenuItem);
             // 
             // skinsToolStripMenuItem
             // 
@@ -69,6 +71,13 @@ namespace JdoCRUD
             this.testToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.testToolStripMenuItem.Text = "test";
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
+            // 
+            // tabuleirosToolStripMenuItem
+            // 
+            this.tabuleirosToolStripMenuItem.Name = "tabuleirosToolStripMenuItem";
+            this.tabuleirosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tabuleirosToolStripMenuItem.Text = "Tabuleiros";
+            this.tabuleirosToolStripMenuItem.Click += new System.EventHandler(this.tabuleirosToolStripMenuItem_Click);
             // 
             // Inicio
             // 
@@ -93,6 +102,7 @@ namespace JdoCRUD
         private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem skinsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tabuleirosToolStripMenuItem;
     }
 }
 

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -30,7 +32,7 @@ namespace JdoCRUD.Forms
             // TODO: This line of code loads data into the 'jdoDataSet.skin' table. You can move, or remove it, as needed.
             try
             {
-                atualizar();
+                Atualizar();
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {
@@ -53,39 +55,42 @@ namespace JdoCRUD.Forms
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            DetalhesSkin();
+            DataGridViewRow row = skinDataGridView.CurrentCell.OwningRow;
+            int id = int.Parse(skinDataGridView.CurrentCell.OwningRow.Cells[0].Value.ToString());
+            DetalhesSkin(id);
         }
 
-        private void DetalhesSkin()
+        private void DetalhesSkin(int id)
         {
-            DataGridViewRow row = skinDataGridView.CurrentCell.OwningRow;
-            int indice = int.Parse(skinDataGridView.CurrentCell.OwningRow.Cells[0].Value.ToString());
-            SkinDetalhes skinDetalhes = new SkinDetalhes(indice);
+            
+            SkinDetalhes skinDetalhes = new SkinDetalhes(id);
             skinDetalhes.ShowDialog();
-            atualizar();
+            Atualizar();
         }
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
             SkinDetalhes skinDetalhes = new SkinDetalhes();
             skinDetalhes.ShowDialog();
-            atualizar();
+            Atualizar();
         }
 
         private void skinDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DetalhesSkin();
+            DataGridViewRow row = skinDataGridView.CurrentCell.OwningRow;
+            int indice = int.Parse(skinDataGridView.CurrentCell.OwningRow.Cells[0].Value.ToString());
+            DetalhesSkin(indice);
         }
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            atualizar();
+            Atualizar();
         }
 
-        private void atualizar()
+        private void Atualizar()
         {
             this.skinTableAdapter.Fill(this.jdoDataSet.skin);
-            popularColunas();
+            PopularColunas();
         }
 
         private void skinDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -93,7 +98,7 @@ namespace JdoCRUD.Forms
 
         }
 
-        private void popularColunas()
+        private void PopularColunas()
         {
             foreach (DataGridViewRow row in skinDataGridView.Rows)
             {
@@ -108,7 +113,23 @@ namespace JdoCRUD.Forms
                 row.Cells[Tipo.Index].Value = row.Cells[tipoPeca.Index].Value.ToString() == "0"? "Onça":"Cachorro";
                 //permanente
                 row.Cells[Permanente.Index].Value = row.Cells[ehPermanente.Index].Value.ToString() == "False"? "Não":"Sim";
-
+                //imagens
+                try
+                {
+                    HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(row.Cells[imagemSkin.Index].Value.ToString());
+                    myRequest.Method = "GET";
+                    HttpWebResponse myResponse = (HttpWebResponse)myRequest.GetResponse();
+                    Bitmap bmp = new Bitmap(myResponse.GetResponseStream());
+                    row.Cells[imgExibicao.Index].Value = bmp;
+                }
+                catch (System.UriFormatException)
+                {
+                    //Imagem não pôde ser exibida/URL inválida
+                }
+                catch (InvalidOperationException)
+                {
+                    //Url vazia
+                }
             }
             //skinDataGridView.Rows[rowIndex].Cells[columnIndex].Style.BackColor = Color.Red;
         }

@@ -14,8 +14,6 @@ namespace JdoCRUD.Forms
 {
     public partial class SkinDetalhes : Form
     {
-
-        private bool novoRegistro;
         private JdoDAO dao;
         Skin skin;
         Color cor;
@@ -24,13 +22,11 @@ namespace JdoCRUD.Forms
         public SkinDetalhes()
         {
             InitializeComponent();
-            novoRegistro = true;
         }
 
         public SkinDetalhes(int idSkin)
         {
             InitializeComponent();
-            novoRegistro = false;
             idSkinInicial = idSkin;
         }
 
@@ -42,32 +38,32 @@ namespace JdoCRUD.Forms
         private void Carregar(int idSkin)
         {
             dao = new JdoDAO();
-            if (novoRegistro)
-                exibicaoNovo();
+            if (idSkinInicial == 0)
+                ExibicaoNovo();
             else
-                exibicaoExistente(idSkin);
+                ExibicaoExistente(idSkin);
         }
 
-        private void salvar(int idSkin)
+        private void Salvar(int idSkin)
         {
-            if(validarCampos())
-            if (novoRegistro)
+            if(ValidarCampos())
+            if (idSkinInicial == 0)
             {
                 //inserir skin
-                skin = consolidarObjeto();
+                skin = ConsolidarObjeto();
                 dao.InserirSkin(skin);
-                exibicaoExistente(idSkin);
+                ExibicaoExistente(idSkin);
             }
             else
             {
                 //atualizar skin
-                skin = consolidarObjeto();
+                skin = ConsolidarObjeto();
                 dao.AtualizarSkin(skin);
-                exibicaoExistente(idSkin);
+                ExibicaoExistente(idSkin);
             }
         }
 
-        private Skin consolidarObjeto()//Cria objeto usando os dados do formulário
+        private Skin ConsolidarObjeto()//Cria objeto usando os dados do formulário
         {
             Skin tempSkin = new Skin
             {
@@ -75,37 +71,61 @@ namespace JdoCRUD.Forms
                 NomeSkin = txtNomeSkin.Text,
                 ImagemSkin = rtxtImagemSkin.Text,
                 TipoPeca = rdbTipoO.Checked ? 0 : 1,
-                EhPermanente = rdbPermanenteSim.Checked,
                 CorTematica = txtCorTematica.Text
             };
 
             return tempSkin;
         }
 
-        private void exibirDados(Skin skin)//Exibe os dados de uma skin no formulário
+        private void ExibirDados(Skin skin)//Exibe os dados de uma skin no formulário
         {
             txtId.Text = skin.Id.ToString();
             txtNomeSkin.Text = skin.NomeSkin;
             rtxtImagemSkin.Text = skin.ImagemSkin;
-            txtTipoPeca.Text = skin.TipoPeca.ToString();
-            txtEhPermanente.Text = skin.EhPermanente.ToString();
             txtCorTematica.Text = skin.CorTematica;
-            if (skin.EhPermanente)
-                rdbPermanenteSim.Checked = true;
-            else
-                rdbPermanenteNao.Checked = true;
+
 
             if (skin.TipoPeca == 0)
                 rdbTipoO.Checked = true;
             else
                 rdbTipoC.Checked = true;
 
-            exibirImagem(skin.ImagemSkin);
+            ExibirImagem(skin.ImagemSkin);
 
-            exibirCor(skin.CorTematica);
+            ExibirCor(skin.CorTematica);
         }
 
-        private void exibicaoNovo()
+        private void SetEditavel(bool estado)
+        {
+            if (estado)
+            {
+                txtNomeSkin.Enabled = true;
+                rtxtImagemSkin.Enabled = true;
+                txtCorTematica.Enabled = true;
+
+                rdbTipoO.Enabled = true;
+                rdbTipoC.Enabled = true;
+
+                btnColorDialog.Enabled = true;
+                btnEditar.Enabled = false;
+                btnSalvar.Enabled = true;
+            }
+            else
+            {
+                txtNomeSkin.Enabled = false;
+                rtxtImagemSkin.Enabled = false;
+                txtCorTematica.Enabled = false;
+
+                rdbTipoO.Enabled = false;
+                rdbTipoC.Enabled = false;
+
+                btnColorDialog.Enabled = false;
+                btnEditar.Enabled = true;
+                btnSalvar.Enabled = false;
+            }
+        }
+
+        private void ExibicaoNovo()
         {
             btnEditar.Enabled = false;
             btnEditar.Visible = false;
@@ -116,7 +136,7 @@ namespace JdoCRUD.Forms
             txtId.Text = autoIncrement.ToString();
         }
 
-        private void exibicaoExistente(int idSkin)
+        private void ExibicaoExistente(int idSkin)
         {
             btnEditar.Enabled = true;
             btnEditar.Visible = true;
@@ -125,66 +145,58 @@ namespace JdoCRUD.Forms
 
             skin = dao.ConsultarSkin(idSkin);
 
-            exibirDados(skin);
+            ExibirDados(skin);
 
-            setEditavel(false);
+            SetEditavel(false);
         }
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            salvar(int.Parse(txtId.Text));
+            Salvar(int.Parse(txtId.Text));
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            setEditavel(true);
-        }
-
-        private void setEditavel(bool estado)
-        {
-            if (estado)
-            {
-                txtNomeSkin.Enabled = true;
-                rtxtImagemSkin.Enabled = true;
-                txtTipoPeca.Enabled = true;
-                txtEhPermanente.Enabled = true;
-                txtCorTematica.Enabled = true;
-
-                rdbTipoO.Enabled = true;
-                rdbTipoC.Enabled = true;
-                rdbPermanenteNao.Enabled = true;
-                rdbPermanenteSim.Enabled = true;
-
-                btnColorDialog.Enabled = true;
-                btnEditar.Enabled = false;
-                btnSalvar.Enabled = true;
-            }
-            else
-            {
-                txtNomeSkin.Enabled = false;
-                rtxtImagemSkin.Enabled = false;
-                txtTipoPeca.Enabled = false;
-                txtEhPermanente.Enabled = false;
-                txtCorTematica.Enabled = false;
-
-                rdbTipoO.Enabled = false;
-                rdbTipoC.Enabled = false;
-                rdbPermanenteNao.Enabled = false;
-                rdbPermanenteSim.Enabled = false;
-
-                btnColorDialog.Enabled = false;
-                btnEditar.Enabled = true;
-                btnSalvar.Enabled = false;
-            }
+            SetEditavel(true);
         }
 
         private void btnColorDialog_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
             lblCor.BackColor = colorDialog1.Color;
-            txtCorTematica.Text = converterColorParaHex(colorDialog1.Color);//ColorTranslator.ToHtml(colorDialog1.Color).ToString();
+            txtCorTematica.Text = ConverterColorParaHex(colorDialog1.Color);//ColorTranslator.ToHtml(colorDialog1.Color).ToString();
         }
 
-        private void exibirCor(string corHex)
+        private void picImagemSkin_Click(object sender, EventArgs e)
+        {
+            //TODO: Exibir imagem aumentada
+        }
+
+        private void btnRemover_Click(object sender, EventArgs e)
+        {
+            Remover();
+        }
+
+        private void txtCorTematica_TextChanged(object sender, EventArgs e)
+        {
+            if(txtCorTematica.Text.Length == 7)
+            {
+                try
+                {
+                    ExibirCor(txtCorTematica.Text);
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Cor inválida", "Falha");
+                }
+            }
+        }
+
+        private void rtxtImagemSkin_Leave(object sender, EventArgs e)
+        {
+            ExibirImagem(rtxtImagemSkin.Text);
+        }
+
+        private void ExibirCor(string corHex)
         {
             try
             {
@@ -202,33 +214,17 @@ namespace JdoCRUD.Forms
                 MessageBox.Show("Cor inválida", "Falha");
                 txtCorTematica.Text = "";
             }
-            /*try
-            {
-            }
-            catch(System.FormatException e)
-            {
-                string message = e.Message;
-            }*/
         }
 
-        private string converterColorParaHex(Color c)
+        private string ConverterColorParaHex(Color c)
         {
             return "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
         }
 
-        private void picImagemSkin_Click(object sender, EventArgs e)
+        public void Remover()
         {
-            //TODO: Exibir imagem aumentada
-        }
-
-        private void btnRemover_Click(object sender, EventArgs e)
-        {
-            remover();
-        }
-
-        public void remover()
-        {
-            skin = consolidarObjeto();
+            skin = ConsolidarObjeto();
+            //TODO: Verificação de registros filhos
             DialogResult resposta = MessageBox.Show("Deseja remover a skin? Esta ação não pode ser revertida.", "Atenção", MessageBoxButtons.YesNo);
             if (resposta == DialogResult.Yes)
             {
@@ -238,27 +234,7 @@ namespace JdoCRUD.Forms
             }
         }
 
-        private void txtCorTematica_TextChanged(object sender, EventArgs e)
-        {
-            if(txtCorTematica.Text.Length == 7)
-            {
-                try
-                {
-                    exibirCor(txtCorTematica.Text);
-                }
-                catch (System.FormatException formatE)
-                {
-                    MessageBox.Show("Cor inválida", "Falha");
-                }
-            }
-        }
-
-        private void rtxtImagemSkin_Leave(object sender, EventArgs e)
-        {
-            exibirImagem(rtxtImagemSkin.Text);
-        }
-
-        private void exibirImagem(string url)
+        private void ExibirImagem(string url)
         {
             try
             {
@@ -276,7 +252,7 @@ namespace JdoCRUD.Forms
             }
         }
 
-        private bool validarCampos()
+        private bool ValidarCampos()
         {
             bool ok = true;
 

@@ -34,16 +34,6 @@ namespace JdoCRUD
             
         }
 
-        private void visualizarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void definirSenhaDoBDToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Inicio_Load(object sender, EventArgs e)
         {
 
@@ -53,6 +43,12 @@ namespace JdoCRUD
         {
             test test = new test();
             test.ShowDialog();
+        }
+
+        private void tabuleirosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TabuleiroLista tabuleiroLista = new TabuleiroLista();
+            tabuleiroLista.ShowDialog();
         }
     }
 }

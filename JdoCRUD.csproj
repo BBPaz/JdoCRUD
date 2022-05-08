@@ -97,11 +97,26 @@
     <Compile Include="Forms\SkinLista.Designer.cs">
       <DependentUpon>SkinLista.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\TabuleiroDetalhes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TabuleiroDetalhes.Designer.cs">
+      <DependentUpon>TabuleiroDetalhes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TabuleiroLista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TabuleiroLista.Designer.cs">
+      <DependentUpon>TabuleiroLista.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\test.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\test.Designer.cs">
       <DependentUpon>test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="jdoDataSet.cs">
+      <DependentUpon>jdoDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="jdoDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -122,6 +137,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SkinLista.resx">
       <DependentUpon>SkinLista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TabuleiroDetalhes.resx">
+      <DependentUpon>TabuleiroDetalhes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TabuleiroLista.resx">
+      <DependentUpon>TabuleiroLista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\test.resx">
       <DependentUpon>test.cs</DependentUpon>

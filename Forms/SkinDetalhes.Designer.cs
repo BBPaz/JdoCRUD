@@ -33,10 +33,7 @@ namespace JdoCRUD.Forms
             this.txtId = new System.Windows.Forms.TextBox();
             this.txtNomeSkin = new System.Windows.Forms.TextBox();
             this.lblNomeSkin = new System.Windows.Forms.Label();
-            this.txtImagemSkin = new System.Windows.Forms.TextBox();
             this.lblImagemSkin = new System.Windows.Forms.Label();
-            this.txtEhPermanente = new System.Windows.Forms.TextBox();
-            this.lblEhPermanente = new System.Windows.Forms.Label();
             this.txtTipoPeca = new System.Windows.Forms.TextBox();
             this.lblTipoPeca = new System.Windows.Forms.Label();
             this.txtCorTematica = new System.Windows.Forms.TextBox();
@@ -45,18 +42,14 @@ namespace JdoCRUD.Forms
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnRemover = new System.Windows.Forms.Button();
             this.picImagemSkin = new System.Windows.Forms.PictureBox();
-            this.rdbPermanenteSim = new System.Windows.Forms.RadioButton();
-            this.rdbPermanenteNao = new System.Windows.Forms.RadioButton();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.rdbTipoO = new System.Windows.Forms.RadioButton();
             this.rdbTipoC = new System.Windows.Forms.RadioButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.btnColorDialog = new System.Windows.Forms.Button();
-            this.lblCor = new System.Windows.Forms.Label();
             this.rtxtImagemSkin = new System.Windows.Forms.RichTextBox();
+            this.lblCor = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picImagemSkin)).BeginInit();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,14 +86,6 @@ namespace JdoCRUD.Forms
             this.lblNomeSkin.TabIndex = 2;
             this.lblNomeSkin.Text = "Nome da Skin:";
             // 
-            // txtImagemSkin
-            // 
-            this.txtImagemSkin.Location = new System.Drawing.Point(445, 58);
-            this.txtImagemSkin.Name = "txtImagemSkin";
-            this.txtImagemSkin.Size = new System.Drawing.Size(100, 20);
-            this.txtImagemSkin.TabIndex = 5;
-            this.txtImagemSkin.Visible = false;
-            // 
             // lblImagemSkin
             // 
             this.lblImagemSkin.AutoSize = true;
@@ -110,29 +95,10 @@ namespace JdoCRUD.Forms
             this.lblImagemSkin.TabIndex = 4;
             this.lblImagemSkin.Text = "Imagem Skin:";
             // 
-            // txtEhPermanente
-            // 
-            this.txtEhPermanente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtEhPermanente.Location = new System.Drawing.Point(260, 187);
-            this.txtEhPermanente.Name = "txtEhPermanente";
-            this.txtEhPermanente.Size = new System.Drawing.Size(100, 20);
-            this.txtEhPermanente.TabIndex = 7;
-            this.txtEhPermanente.Visible = false;
-            // 
-            // lblEhPermanente
-            // 
-            this.lblEhPermanente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblEhPermanente.AutoSize = true;
-            this.lblEhPermanente.Location = new System.Drawing.Point(12, 188);
-            this.lblEhPermanente.Name = "lblEhPermanente";
-            this.lblEhPermanente.Size = new System.Drawing.Size(100, 13);
-            this.lblEhPermanente.TabIndex = 6;
-            this.lblEhPermanente.Text = "Venda permanente:";
-            // 
             // txtTipoPeca
             // 
             this.txtTipoPeca.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtTipoPeca.Location = new System.Drawing.Point(260, 213);
+            this.txtTipoPeca.Location = new System.Drawing.Point(260, 195);
             this.txtTipoPeca.Name = "txtTipoPeca";
             this.txtTipoPeca.Size = new System.Drawing.Size(100, 20);
             this.txtTipoPeca.TabIndex = 9;
@@ -142,7 +108,7 @@ namespace JdoCRUD.Forms
             // 
             this.lblTipoPeca.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTipoPeca.AutoSize = true;
-            this.lblTipoPeca.Location = new System.Drawing.Point(12, 214);
+            this.lblTipoPeca.Location = new System.Drawing.Point(12, 196);
             this.lblTipoPeca.Name = "lblTipoPeca";
             this.lblTipoPeca.Size = new System.Drawing.Size(71, 13);
             this.lblTipoPeca.TabIndex = 8;
@@ -151,7 +117,7 @@ namespace JdoCRUD.Forms
             // txtCorTematica
             // 
             this.txtCorTematica.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtCorTematica.Location = new System.Drawing.Point(114, 237);
+            this.txtCorTematica.Location = new System.Drawing.Point(114, 219);
             this.txtCorTematica.MaxLength = 7;
             this.txtCorTematica.Name = "txtCorTematica";
             this.txtCorTematica.Size = new System.Drawing.Size(100, 20);
@@ -162,7 +128,7 @@ namespace JdoCRUD.Forms
             // 
             this.lblCorTematica.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCorTematica.AutoSize = true;
-            this.lblCorTematica.Location = new System.Drawing.Point(12, 240);
+            this.lblCorTematica.Location = new System.Drawing.Point(12, 222);
             this.lblCorTematica.Name = "lblCorTematica";
             this.lblCorTematica.Size = new System.Drawing.Size(69, 13);
             this.lblCorTematica.TabIndex = 10;
@@ -171,7 +137,7 @@ namespace JdoCRUD.Forms
             // btnSalvar
             // 
             this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalvar.Location = new System.Drawing.Point(481, 305);
+            this.btnSalvar.Location = new System.Drawing.Point(481, 296);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 12;
@@ -182,7 +148,7 @@ namespace JdoCRUD.Forms
             // btnEditar
             // 
             this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditar.Location = new System.Drawing.Point(400, 305);
+            this.btnEditar.Location = new System.Drawing.Point(400, 296);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 13;
@@ -193,7 +159,7 @@ namespace JdoCRUD.Forms
             // btnRemover
             // 
             this.btnRemover.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemover.Location = new System.Drawing.Point(319, 305);
+            this.btnRemover.Location = new System.Drawing.Point(319, 296);
             this.btnRemover.Name = "btnRemover";
             this.btnRemover.Size = new System.Drawing.Size(75, 23);
             this.btnRemover.TabIndex = 14;
@@ -206,7 +172,7 @@ namespace JdoCRUD.Forms
             this.picImagemSkin.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.picImagemSkin.Location = new System.Drawing.Point(114, 109);
+            this.picImagemSkin.Location = new System.Drawing.Point(114, 117);
             this.picImagemSkin.MinimumSize = new System.Drawing.Size(70, 70);
             this.picImagemSkin.Name = "picImagemSkin";
             this.picImagemSkin.Size = new System.Drawing.Size(70, 70);
@@ -215,45 +181,12 @@ namespace JdoCRUD.Forms
             this.picImagemSkin.TabStop = false;
             this.picImagemSkin.Click += new System.EventHandler(this.picImagemSkin_Click);
             // 
-            // rdbPermanenteSim
-            // 
-            this.rdbPermanenteSim.AutoSize = true;
-            this.rdbPermanenteSim.Location = new System.Drawing.Point(3, 3);
-            this.rdbPermanenteSim.Name = "rdbPermanenteSim";
-            this.rdbPermanenteSim.Size = new System.Drawing.Size(42, 17);
-            this.rdbPermanenteSim.TabIndex = 17;
-            this.rdbPermanenteSim.TabStop = true;
-            this.rdbPermanenteSim.Text = "Sim";
-            this.rdbPermanenteSim.UseVisualStyleBackColor = true;
-            // 
-            // rdbPermanenteNao
-            // 
-            this.rdbPermanenteNao.AutoSize = true;
-            this.rdbPermanenteNao.Checked = true;
-            this.rdbPermanenteNao.Location = new System.Drawing.Point(51, 3);
-            this.rdbPermanenteNao.Name = "rdbPermanenteNao";
-            this.rdbPermanenteNao.Size = new System.Drawing.Size(45, 17);
-            this.rdbPermanenteNao.TabIndex = 18;
-            this.rdbPermanenteNao.TabStop = true;
-            this.rdbPermanenteNao.Text = "Não";
-            this.rdbPermanenteNao.UseVisualStyleBackColor = true;
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel1.Controls.Add(this.rdbPermanenteSim);
-            this.panel1.Controls.Add(this.rdbPermanenteNao);
-            this.panel1.Location = new System.Drawing.Point(114, 185);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(97, 20);
-            this.panel1.TabIndex = 19;
-            // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel2.Controls.Add(this.rdbTipoO);
             this.panel2.Controls.Add(this.rdbTipoC);
-            this.panel2.Location = new System.Drawing.Point(114, 211);
+            this.panel2.Location = new System.Drawing.Point(114, 193);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(130, 20);
             this.panel2.TabIndex = 20;
@@ -288,7 +221,7 @@ namespace JdoCRUD.Forms
             // btnColorDialog
             // 
             this.btnColorDialog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnColorDialog.Location = new System.Drawing.Point(114, 276);
+            this.btnColorDialog.Location = new System.Drawing.Point(114, 258);
             this.btnColorDialog.Name = "btnColorDialog";
             this.btnColorDialog.Size = new System.Drawing.Size(110, 23);
             this.btnColorDialog.TabIndex = 21;
@@ -296,35 +229,35 @@ namespace JdoCRUD.Forms
             this.btnColorDialog.UseVisualStyleBackColor = true;
             this.btnColorDialog.Click += new System.EventHandler(this.btnColorDialog_Click);
             // 
-            // lblCor
-            // 
-            this.lblCor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblCor.AutoSize = true;
-            this.lblCor.Location = new System.Drawing.Point(114, 260);
-            this.lblCor.Name = "lblCor";
-            this.lblCor.Size = new System.Drawing.Size(97, 13);
-            this.lblCor.TabIndex = 22;
-            this.lblCor.Text = "                              ";
-            // 
             // rtxtImagemSkin
             // 
             this.rtxtImagemSkin.Location = new System.Drawing.Point(114, 58);
             this.rtxtImagemSkin.Name = "rtxtImagemSkin";
-            this.rtxtImagemSkin.Size = new System.Drawing.Size(325, 42);
+            this.rtxtImagemSkin.Size = new System.Drawing.Size(442, 53);
             this.rtxtImagemSkin.TabIndex = 23;
             this.rtxtImagemSkin.Text = "";
             this.rtxtImagemSkin.Leave += new System.EventHandler(this.rtxtImagemSkin_Leave);
+            // 
+            // lblCor
+            // 
+            this.lblCor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCor.AutoSize = true;
+            this.lblCor.Location = new System.Drawing.Point(117, 242);
+            this.lblCor.Name = "lblCor";
+            this.lblCor.Size = new System.Drawing.Size(97, 13);
+            this.lblCor.TabIndex = 34;
+            this.lblCor.Text = "                              ";
             // 
             // SkinDetalhes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 340);
-            this.Controls.Add(this.rtxtImagemSkin);
+            this.ClientSize = new System.Drawing.Size(568, 331);
             this.Controls.Add(this.lblCor);
+            this.Controls.Add(this.rtxtImagemSkin);
             this.Controls.Add(this.btnColorDialog);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.picImagemSkin);
             this.Controls.Add(this.btnRemover);
             this.Controls.Add(this.btnEditar);
@@ -333,9 +266,6 @@ namespace JdoCRUD.Forms
             this.Controls.Add(this.lblCorTematica);
             this.Controls.Add(this.txtTipoPeca);
             this.Controls.Add(this.lblTipoPeca);
-            this.Controls.Add(this.txtEhPermanente);
-            this.Controls.Add(this.lblEhPermanente);
-            this.Controls.Add(this.txtImagemSkin);
             this.Controls.Add(this.lblImagemSkin);
             this.Controls.Add(this.txtNomeSkin);
             this.Controls.Add(this.lblNomeSkin);
@@ -346,8 +276,6 @@ namespace JdoCRUD.Forms
             this.Text = "SkinDetalhes";
             this.Load += new System.EventHandler(this.SkinDetalhes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picImagemSkin)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -361,10 +289,7 @@ namespace JdoCRUD.Forms
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox txtNomeSkin;
         private System.Windows.Forms.Label lblNomeSkin;
-        private System.Windows.Forms.TextBox txtImagemSkin;
         private System.Windows.Forms.Label lblImagemSkin;
-        private System.Windows.Forms.TextBox txtEhPermanente;
-        private System.Windows.Forms.Label lblEhPermanente;
         private System.Windows.Forms.TextBox txtTipoPeca;
         private System.Windows.Forms.Label lblTipoPeca;
         private System.Windows.Forms.TextBox txtCorTematica;
@@ -373,15 +298,12 @@ namespace JdoCRUD.Forms
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnRemover;
         private System.Windows.Forms.PictureBox picImagemSkin;
-        private System.Windows.Forms.RadioButton rdbPermanenteSim;
-        private System.Windows.Forms.RadioButton rdbPermanenteNao;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.RadioButton rdbTipoO;
         private System.Windows.Forms.RadioButton rdbTipoC;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button btnColorDialog;
-        private System.Windows.Forms.Label lblCor;
         private System.Windows.Forms.RichTextBox rtxtImagemSkin;
+        private System.Windows.Forms.Label lblCor;
     }
 }
