@@ -34,20 +34,19 @@ namespace JdoCRUD.Forms
             this.btnNovo = new System.Windows.Forms.Button();
             this.btnDetalhes = new System.Windows.Forms.Button();
             this.btnAtualizar = new System.Windows.Forms.Button();
-            this.skinBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.jdoDataSet = new JdoCRUD.jdoDataSet();
-            this.skinTableAdapter = new JdoCRUD.jdoDataSetTableAdapters.skinTableAdapter();
-            this.tableAdapterManager = new JdoCRUD.jdoDataSetTableAdapters.TableAdapterManager();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeSkin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imgExibicao = new System.Windows.Forms.DataGridViewImageColumn();
             this.Cor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Permanente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeSkin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imagemSkin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ehPermanente = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tipoPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.corTematica = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.skinBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.jdoDataSet = new JdoCRUD.jdoDataSet();
+            this.skinTableAdapter = new JdoCRUD.jdoDataSetTableAdapters.skinTableAdapter();
+            this.tableAdapterManager = new JdoCRUD.jdoDataSetTableAdapters.TableAdapterManager();
             ((System.ComponentModel.ISupportInitialize)(this.skinDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.skinBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jdoDataSet)).BeginInit();
@@ -68,7 +67,6 @@ namespace JdoCRUD.Forms
             this.imgExibicao,
             this.Cor,
             this.Tipo,
-            this.Permanente,
             this.imagemSkin,
             this.ehPermanente,
             this.tipoPeca,
@@ -79,7 +77,7 @@ namespace JdoCRUD.Forms
             this.skinDataGridView.ReadOnly = true;
             this.skinDataGridView.RowTemplate.Height = 50;
             this.skinDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.skinDataGridView.Size = new System.Drawing.Size(647, 411);
+            this.skinDataGridView.Size = new System.Drawing.Size(547, 411);
             this.skinDataGridView.TabIndex = 1;
             this.skinDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.skinDataGridView_CellContentClick);
             this.skinDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.skinDataGridView_CellDoubleClick);
@@ -109,52 +107,13 @@ namespace JdoCRUD.Forms
             // btnAtualizar
             // 
             this.btnAtualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAtualizar.Location = new System.Drawing.Point(584, 429);
+            this.btnAtualizar.Location = new System.Drawing.Point(484, 429);
             this.btnAtualizar.Name = "btnAtualizar";
             this.btnAtualizar.Size = new System.Drawing.Size(75, 23);
             this.btnAtualizar.TabIndex = 4;
             this.btnAtualizar.Text = "Atualizar";
             this.btnAtualizar.UseVisualStyleBackColor = true;
             this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
-            // 
-            // skinBindingSource
-            // 
-            this.skinBindingSource.DataMember = "skin";
-            this.skinBindingSource.DataSource = this.jdoDataSet;
-            // 
-            // jdoDataSet
-            // 
-            this.jdoDataSet.DataSetName = "jdoDataSet";
-            this.jdoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // skinTableAdapter
-            // 
-            this.skinTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.seasonTableAdapter = null;
-            this.tableAdapterManager.skinTableAdapter = this.skinTableAdapter;
-            this.tableAdapterManager.tabuleiroTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = JdoCRUD.jdoDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.vendaTableAdapter = null;
-            // 
-            // id
-            // 
-            this.id.DataPropertyName = "id";
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Width = 50;
-            // 
-            // nomeSkin
-            // 
-            this.nomeSkin.DataPropertyName = "nomeSkin";
-            this.nomeSkin.HeaderText = "Nome";
-            this.nomeSkin.Name = "nomeSkin";
-            this.nomeSkin.ReadOnly = true;
-            this.nomeSkin.Width = 150;
             // 
             // imgExibicao
             // 
@@ -175,11 +134,21 @@ namespace JdoCRUD.Forms
             this.Tipo.Name = "Tipo";
             this.Tipo.ReadOnly = true;
             // 
-            // Permanente
+            // id
             // 
-            this.Permanente.HeaderText = "Permanente";
-            this.Permanente.Name = "Permanente";
-            this.Permanente.ReadOnly = true;
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Width = 50;
+            // 
+            // nomeSkin
+            // 
+            this.nomeSkin.DataPropertyName = "nomeSkin";
+            this.nomeSkin.HeaderText = "Nome";
+            this.nomeSkin.Name = "nomeSkin";
+            this.nomeSkin.ReadOnly = true;
+            this.nomeSkin.Width = 150;
             // 
             // imagemSkin
             // 
@@ -214,11 +183,35 @@ namespace JdoCRUD.Forms
             this.corTematica.ReadOnly = true;
             this.corTematica.Visible = false;
             // 
+            // skinBindingSource
+            // 
+            this.skinBindingSource.DataMember = "skin";
+            this.skinBindingSource.DataSource = this.jdoDataSet;
+            // 
+            // jdoDataSet
+            // 
+            this.jdoDataSet.DataSetName = "jdoDataSet";
+            this.jdoDataSet.Locale = new System.Globalization.CultureInfo("pt-BR");
+            this.jdoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // skinTableAdapter
+            // 
+            this.skinTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.seasonTableAdapter = null;
+            this.tableAdapterManager.skinTableAdapter = this.skinTableAdapter;
+            this.tableAdapterManager.tabuleiroTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = JdoCRUD.jdoDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.vendaTableAdapter = null;
+            // 
             // SkinLista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 464);
+            this.ClientSize = new System.Drawing.Size(571, 464);
             this.Controls.Add(this.btnAtualizar);
             this.Controls.Add(this.btnDetalhes);
             this.Controls.Add(this.btnNovo);
@@ -248,7 +241,6 @@ namespace JdoCRUD.Forms
         private System.Windows.Forms.DataGridViewImageColumn imgExibicao;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cor;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Permanente;
         private System.Windows.Forms.DataGridViewTextBoxColumn imagemSkin;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ehPermanente;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipoPeca;

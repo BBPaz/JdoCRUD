@@ -78,7 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\JdoDAO.cs" />
-    <Compile Include="DAO\helper.cs" />
+    <Compile Include="helper.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -6,6 +6,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -276,6 +279,43 @@ namespace JdoCRUD.Forms
             }
 
             return ok;
+        }
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string result = fileDialog.FileName;
+                rtxtImagemSkin.Text = Upload(result);
+                ExibirImagem(rtxtImagemSkin.Text);
+            }
+            else
+            {
+                MessageBox.Show("Seleção inválida");
+                return;
+            }
+        }
+
+        private string Upload(string caminho)
+        {
+            byte[] imagem = (byte[])new ImageConverter().ConvertTo(new Bitmap(caminho), typeof(byte[]));
+
+            HttpClient client = new HttpClient();
+
+            MultipartFormDataContent conteudoRequest = new MultipartFormDataContent();
+
+            ByteArrayContent conteudoImagem = new ByteArrayContent(imagem);
+
+            conteudoImagem.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
+
+            conteudoRequest.Add(conteudoImagem, "arquivo", caminho.Split('\\')[caminho.Split('\\').Count()-1]);
+
+            var result = client.PostAsync(helper.Instancia.GetImageStoreUrl(), conteudoRequest).Result;
+
+            return result.Content.ReadAsStringAsync().Result;
+
         }
     }
 }

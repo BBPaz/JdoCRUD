@@ -46,6 +46,7 @@ namespace JdoCRUD.Forms
             this.btnRemover = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnSalvar = new System.Windows.Forms.Button();
+            this.btnUpload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picImagemTabuleiro)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,8 +61,7 @@ namespace JdoCRUD.Forms
             // 
             // lblCor
             // 
-            this.lblCor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCor.AutoSize = true;
             this.lblCor.Location = new System.Drawing.Point(117, 242);
             this.lblCor.Name = "lblCor";
@@ -71,8 +71,7 @@ namespace JdoCRUD.Forms
             // 
             // btnColorDialog
             // 
-            this.btnColorDialog.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnColorDialog.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnColorDialog.Location = new System.Drawing.Point(114, 258);
             this.btnColorDialog.MaximumSize = new System.Drawing.Size(110, 23);
             this.btnColorDialog.MinimumSize = new System.Drawing.Size(110, 23);
@@ -85,10 +84,13 @@ namespace JdoCRUD.Forms
             // 
             // picImagemTabuleiro
             // 
+            this.picImagemTabuleiro.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.picImagemTabuleiro.Location = new System.Drawing.Point(114, 117);
             this.picImagemTabuleiro.MinimumSize = new System.Drawing.Size(70, 70);
             this.picImagemTabuleiro.Name = "picImagemTabuleiro";
-            this.picImagemTabuleiro.Size = new System.Drawing.Size(70, 70);
+            this.picImagemTabuleiro.Size = new System.Drawing.Size(78, 70);
             this.picImagemTabuleiro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picImagemTabuleiro.TabIndex = 31;
             this.picImagemTabuleiro.TabStop = false;
@@ -96,8 +98,7 @@ namespace JdoCRUD.Forms
             // 
             // txtCorTematica
             // 
-            this.txtCorTematica.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtCorTematica.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtCorTematica.Location = new System.Drawing.Point(114, 219);
             this.txtCorTematica.MaxLength = 7;
             this.txtCorTematica.Name = "txtCorTematica";
@@ -106,8 +107,7 @@ namespace JdoCRUD.Forms
             // 
             // lblCorTematica
             // 
-            this.lblCorTematica.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCorTematica.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCorTematica.AutoSize = true;
             this.lblCorTematica.Location = new System.Drawing.Point(12, 222);
             this.lblCorTematica.Name = "lblCorTematica";
@@ -159,8 +159,7 @@ namespace JdoCRUD.Forms
             // 
             // txtDtCriacao
             // 
-            this.txtDtCriacao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtDtCriacao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtDtCriacao.Enabled = false;
             this.txtDtCriacao.Location = new System.Drawing.Point(114, 193);
             this.txtDtCriacao.Name = "txtDtCriacao";
@@ -169,8 +168,7 @@ namespace JdoCRUD.Forms
             // 
             // lblDtCriacao
             // 
-            this.lblDtCriacao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblDtCriacao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblDtCriacao.AutoSize = true;
             this.lblDtCriacao.Location = new System.Drawing.Point(12, 196);
             this.lblDtCriacao.Name = "lblDtCriacao";
@@ -181,7 +179,7 @@ namespace JdoCRUD.Forms
             // btnRemover
             // 
             this.btnRemover.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemover.Location = new System.Drawing.Point(298, 294);
+            this.btnRemover.Location = new System.Drawing.Point(381, 294);
             this.btnRemover.Name = "btnRemover";
             this.btnRemover.Size = new System.Drawing.Size(75, 23);
             this.btnRemover.TabIndex = 39;
@@ -192,7 +190,7 @@ namespace JdoCRUD.Forms
             // btnEditar
             // 
             this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditar.Location = new System.Drawing.Point(379, 294);
+            this.btnEditar.Location = new System.Drawing.Point(462, 294);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 38;
@@ -203,7 +201,7 @@ namespace JdoCRUD.Forms
             // btnSalvar
             // 
             this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalvar.Location = new System.Drawing.Point(460, 294);
+            this.btnSalvar.Location = new System.Drawing.Point(543, 294);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 37;
@@ -211,11 +209,23 @@ namespace JdoCRUD.Forms
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
+            // btnUpload
+            // 
+            this.btnUpload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpload.Location = new System.Drawing.Point(546, 88);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(75, 23);
+            this.btnUpload.TabIndex = 40;
+            this.btnUpload.Text = "Upload";
+            this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
             // TabuleiroDetalhes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(547, 329);
+            this.ClientSize = new System.Drawing.Size(630, 329);
+            this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.btnRemover);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnSalvar);
@@ -232,6 +242,7 @@ namespace JdoCRUD.Forms
             this.Controls.Add(this.lblNomeTabuleiro);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.lblId);
+            this.MinimumSize = new System.Drawing.Size(638, 368);
             this.Name = "TabuleiroDetalhes";
             this.Text = "TabuleiroDetalhes";
             this.Load += new System.EventHandler(this.TabuleiroDetalhes_Load);
@@ -260,5 +271,6 @@ namespace JdoCRUD.Forms
         private System.Windows.Forms.Button btnRemover;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.Button btnUpload;
     }
 }

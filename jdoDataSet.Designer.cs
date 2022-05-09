@@ -2670,7 +2670,7 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = helper.Instancia.getConnectionString();
+            this._connection.ConnectionString = helper.Instancia.GetConnectionString();
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3292,7 +3292,7 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = helper.Instancia.getConnectionString();
+            this._connection.ConnectionString = helper.Instancia.GetConnectionString();
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3846,7 +3846,7 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = helper.Instancia.getConnectionString();
+            this._connection.ConnectionString = helper.Instancia.GetConnectionString();
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4332,7 +4332,7 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = helper.Instancia.getConnectionString();
+            this._connection.ConnectionString = helper.Instancia.GetConnectionString();
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

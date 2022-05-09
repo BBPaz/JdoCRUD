@@ -49,6 +49,7 @@ namespace JdoCRUD.Forms
             this.btnColorDialog = new System.Windows.Forms.Button();
             this.rtxtImagemSkin = new System.Windows.Forms.RichTextBox();
             this.lblCor = new System.Windows.Forms.Label();
+            this.btnUpload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picImagemSkin)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -137,7 +138,7 @@ namespace JdoCRUD.Forms
             // btnSalvar
             // 
             this.btnSalvar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSalvar.Location = new System.Drawing.Point(481, 296);
+            this.btnSalvar.Location = new System.Drawing.Point(560, 296);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
             this.btnSalvar.TabIndex = 12;
@@ -148,7 +149,7 @@ namespace JdoCRUD.Forms
             // btnEditar
             // 
             this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditar.Location = new System.Drawing.Point(400, 296);
+            this.btnEditar.Location = new System.Drawing.Point(479, 296);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 23);
             this.btnEditar.TabIndex = 13;
@@ -159,7 +160,7 @@ namespace JdoCRUD.Forms
             // btnRemover
             // 
             this.btnRemover.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemover.Location = new System.Drawing.Point(319, 296);
+            this.btnRemover.Location = new System.Drawing.Point(398, 296);
             this.btnRemover.Name = "btnRemover";
             this.btnRemover.Size = new System.Drawing.Size(75, 23);
             this.btnRemover.TabIndex = 14;
@@ -240,8 +241,7 @@ namespace JdoCRUD.Forms
             // 
             // lblCor
             // 
-            this.lblCor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCor.AutoSize = true;
             this.lblCor.Location = new System.Drawing.Point(117, 242);
             this.lblCor.Name = "lblCor";
@@ -249,11 +249,23 @@ namespace JdoCRUD.Forms
             this.lblCor.TabIndex = 34;
             this.lblCor.Text = "                              ";
             // 
+            // btnUpload
+            // 
+            this.btnUpload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpload.Location = new System.Drawing.Point(560, 88);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(75, 23);
+            this.btnUpload.TabIndex = 35;
+            this.btnUpload.Text = "Upload";
+            this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
             // SkinDetalhes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 331);
+            this.ClientSize = new System.Drawing.Size(647, 331);
+            this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.lblCor);
             this.Controls.Add(this.rtxtImagemSkin);
             this.Controls.Add(this.btnColorDialog);
@@ -305,5 +317,6 @@ namespace JdoCRUD.Forms
         private System.Windows.Forms.Button btnColorDialog;
         private System.Windows.Forms.RichTextBox rtxtImagemSkin;
         private System.Windows.Forms.Label lblCor;
+        private System.Windows.Forms.Button btnUpload;
     }
 }

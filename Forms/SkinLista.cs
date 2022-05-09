@@ -111,8 +111,6 @@ namespace JdoCRUD.Forms
                 catch (Exception) { } //Não foi possível exibir alguma das cores na coluna de cor
                 //tipo
                 row.Cells[Tipo.Index].Value = row.Cells[tipoPeca.Index].Value.ToString() == "0"? "Onça":"Cachorro";
-                //permanente
-                row.Cells[Permanente.Index].Value = row.Cells[ehPermanente.Index].Value.ToString() == "False"? "Não":"Sim";
                 //imagens
                 try
                 {

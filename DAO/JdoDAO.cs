@@ -19,7 +19,7 @@ namespace JdoCRUD.DAO
         public void Remover(string tabela, int id)
         {
             con = new MySqlConnection();
-            con.ConnectionString = db.getConnectionString();
+            con.ConnectionString = db.GetConnectionString();
             string query = string.Format("DELETE FROM {0} WHERE id = {1}", tabela, id);
             try
             {
@@ -55,7 +55,7 @@ namespace JdoCRUD.DAO
         {
             int autoIncrement;
             con = new MySqlConnection();
-            con.ConnectionString = db.getConnectionString();
+            con.ConnectionString = db.GetConnectionString();
 
             string query = string.Format("SELECT auto_increment FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'testedb' AND TABLE_NAME = {0}", "'" + tabela + "'");
 
@@ -96,7 +96,7 @@ namespace JdoCRUD.DAO
         {
             Skin skin = new Skin();
             con = new MySqlConnection();
-            con.ConnectionString = db.getConnectionString();
+            con.ConnectionString = db.GetConnectionString();
 
             string query = string.Format("select * from skin where id = {0}", "'" + id + "'");
 
@@ -124,7 +124,7 @@ namespace JdoCRUD.DAO
         {
             List<Skin> skins = new List<Skin>();
             con = new MySqlConnection();
-            con.ConnectionString = db.getConnectionString();
+            con.ConnectionString = db.GetConnectionString();
 
             string query = "select * from skin";
 
@@ -153,7 +153,7 @@ namespace JdoCRUD.DAO
         public void InserirSkin(Skin skin)
         {
             con = new MySqlConnection();
-            con.ConnectionString = db.getConnectionString();
+            con.ConnectionString = db.GetConnectionString();
             jdoDataSet set = new jdoDataSet();
 
             string query = "insert into skin(nomeSkin, imagemSkin, ehPermanente, tipoPeca, corTematica) VALUES";
@@ -179,7 +179,7 @@ namespace JdoCRUD.DAO
         public void AtualizarSkin(Skin skin)
         {
             con = new MySqlConnection();
-            con.ConnectionString = db.getConnectionString();
+            con.ConnectionString = db.GetConnectionString();
             string query = "update skin SET nomeSkin = ?nomeSkin, imagemSkin = ?imagemSkin, ehPermanente = ?ehPermanente, tipoPeca = ?tipoPeca, corTematica = ?corTematica";
             query += " WHERE id = ?id";
             try
@@ -205,7 +205,7 @@ namespace JdoCRUD.DAO
         {
             Tabuleiro tabuleiro = new Tabuleiro();
             con = new MySqlConnection();
-            con.ConnectionString = db.getConnectionString();
+            con.ConnectionString = db.GetConnectionString();
 
             string query = string.Format("select * from tabuleiro where id = {0}", "'" + id + "'");
 
@@ -229,7 +229,7 @@ namespace JdoCRUD.DAO
         public void InserirTabuleiro(Tabuleiro tabuleiro)
         {
             con = new MySqlConnection();
-            con.ConnectionString = db.getConnectionString();
+            con.ConnectionString = db.GetConnectionString();
             jdoDataSet set = new jdoDataSet();
 
             string query = "insert into tabuleiro(nomeTabuleiro, imagemTabuleiro, dtCriacao, corTematica) VALUES";
@@ -252,7 +252,7 @@ namespace JdoCRUD.DAO
         public void AtualizarTabuleiro(Tabuleiro tabuleiro)
         {
             con = new MySqlConnection();
-            con.ConnectionString = db.getConnectionString();
+            con.ConnectionString = db.GetConnectionString();
             string query = "update tabuleiro SET nomeTabuleiro = ?nomeTabuleiro, imagemTabuleiro = ?imagemTabuleiro, corTematica = ?corTematica";
             query += " WHERE id = ?id";
             try

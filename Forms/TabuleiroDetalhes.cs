@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -191,12 +193,16 @@ namespace JdoCRUD.Forms
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if (novo)
-                controller.Inserir(ConsolidarObjeto());
-            else
-                controller.Atualizar(ConsolidarObjeto());
+            if (ValidarCampos())
+            {
+                if (novo)
+                    controller.Inserir(ConsolidarObjeto());
+                else
+                    controller.Atualizar(ConsolidarObjeto());
 
-            ExibicaoExistente(ConsolidarObjeto().Id);
+                ExibicaoExistente(ConsolidarObjeto().Id);
+            }
+
         }
 
         private void btnColorDialog_Click(object sender, EventArgs e)
@@ -214,6 +220,23 @@ namespace JdoCRUD.Forms
         private void rtxtImagemTabuleiro_Leave(object sender, EventArgs e)
         {
             ExibirImagem(rtxtImagemTabuleiro.Text);
+        }
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string result = fileDialog.FileName;
+                rtxtImagemTabuleiro.Text = controller.Upload(result);
+                ExibirImagem(rtxtImagemTabuleiro.Text);
+            }
+            else
+            {
+                MessageBox.Show("Seleção inválida");
+                return;
+            }
         }
     }
 
@@ -262,6 +285,26 @@ namespace JdoCRUD.Forms
         public Tabuleiro ConsultarTabuleiro(int idTabuleiro)
         {
             return dao.ConsultarTabuleiro(idTabuleiro);
+        }
+
+        public string Upload(string caminho)
+        {
+            byte[] imagem = (byte[])new ImageConverter().ConvertTo(new Bitmap(caminho), typeof(byte[]));
+
+            HttpClient client = new HttpClient();
+
+            MultipartFormDataContent conteudoRequest = new MultipartFormDataContent();
+
+            ByteArrayContent conteudoImagem = new ByteArrayContent(imagem);
+
+            conteudoImagem.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg");
+
+            conteudoRequest.Add(conteudoImagem, "arquivo", caminho.Split('\\')[caminho.Split('\\').Count() - 1]);
+
+            var result = client.PostAsync(helper.Instancia.GetImageStoreUrl(), conteudoRequest).Result;
+
+            return result.Content.ReadAsStringAsync().Result;
+
         }
     }
 }

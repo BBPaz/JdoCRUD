@@ -72,7 +72,7 @@ namespace JdoCRUD.Forms
             this.tabuleiroDataGridView.Name = "tabuleiroDataGridView";
             this.tabuleiroDataGridView.ReadOnly = true;
             this.tabuleiroDataGridView.RowTemplate.Height = 50;
-            this.tabuleiroDataGridView.Size = new System.Drawing.Size(596, 397);
+            this.tabuleiroDataGridView.Size = new System.Drawing.Size(555, 397);
             this.tabuleiroDataGridView.TabIndex = 0;
             this.tabuleiroDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.tabuleiroDataGridView_CellDoubleClick);
             // 
@@ -89,7 +89,7 @@ namespace JdoCRUD.Forms
             // btnAtualizar
             // 
             this.btnAtualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAtualizar.Location = new System.Drawing.Point(533, 415);
+            this.btnAtualizar.Location = new System.Drawing.Point(492, 415);
             this.btnAtualizar.Name = "btnAtualizar";
             this.btnAtualizar.Size = new System.Drawing.Size(75, 23);
             this.btnAtualizar.TabIndex = 7;
@@ -171,7 +171,7 @@ namespace JdoCRUD.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(620, 450);
+            this.ClientSize = new System.Drawing.Size(579, 450);
             this.Controls.Add(this.btnAtualizar);
             this.Controls.Add(this.btnDetalhes);
             this.Controls.Add(this.btnNovo);
