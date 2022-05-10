@@ -201,6 +201,11 @@ namespace JdoCRUD.DAO
             }
         }
 
+        internal bool IsRemovivelSkin(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Tabuleiro ConsultarTabuleiro(int id)
         {
             Tabuleiro tabuleiro = new Tabuleiro();
@@ -226,6 +231,35 @@ namespace JdoCRUD.DAO
             return tabuleiro;
         }
 
+        public List<Tabuleiro> ConsultarTabuleiros()
+        {
+            List<Tabuleiro> tabuleiros = new List<Tabuleiro>();
+            con = new MySqlConnection();
+            con.ConnectionString = db.GetConnectionString();
+
+            string query = "select * from tabuleiro";
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, con))
+            {
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    Tabuleiro tabuleiro = new Tabuleiro(); 
+                    tabuleiro.Id = int.Parse(row["id"].ToString());
+                    tabuleiro.NomeTabuleiro = row["nomeTabuleiro"].ToString();
+                    tabuleiro.ImagemTabuleiro = row["imagemTabuleiro"].ToString();
+                    tabuleiro.DtCriacao = DateTime.Parse(row["dtCriacao"].ToString());
+                    tabuleiro.CorTematica = row["corTematica"].ToString();
+                    tabuleiros.Add(tabuleiro);
+                }
+
+            }
+            return tabuleiros;
+        }
+
         public void InserirTabuleiro(Tabuleiro tabuleiro)
         {
             con = new MySqlConnection();
@@ -249,6 +283,7 @@ namespace JdoCRUD.DAO
                 con.Close();
             }
         }
+
         public void AtualizarTabuleiro(Tabuleiro tabuleiro)
         {
             con = new MySqlConnection();
@@ -270,6 +305,178 @@ namespace JdoCRUD.DAO
             {
                 con.Close();
             }
+        }
+
+        public bool IsRemovivelTabuleiro(int id)
+        {
+            List<Season> seasons = new List<Season>();
+            con = new MySqlConnection();
+            con.ConnectionString = db.GetConnectionString();
+
+            string query = string.Format("select * from season where idTabuleiro = {0}", id);
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, con))
+            {
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    Season season = new Season();
+                    season.Id = int.Parse(row["id"].ToString());
+                    season.NomeSeason = row["nomeSeason"].ToString();
+                    season.InicioVigencia = DateTime.Parse(row["inicioVigencia"].ToString());
+                    season.FimVigencia = DateTime.Parse(row["fimVigencia"].ToString());
+                    season.IdTabuleiro = int.Parse(row["idTabuleiro"].ToString());
+                    season.Prioridade = int.Parse(row["prioridade"].ToString());
+
+                    seasons.Add(season);
+                }
+
+            }
+            return seasons.Count == 0;
+        }
+
+        public Season ConsultarSeason(int id)
+        {
+            Season season = new Season();
+            con = new MySqlConnection();
+            con.ConnectionString = db.GetConnectionString();
+
+            string query = string.Format("select * from season where id = {0}", "'" + id + "'");
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, con))
+            {
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                DataRow row = dataTable.Rows[0];
+
+                season.Id = int.Parse(row["id"].ToString());
+                season.NomeSeason = row["nomeSeason"].ToString();
+                season.InicioVigencia = DateTime.Parse(row["inicioVigencia"].ToString());
+                season.FimVigencia = DateTime.Parse(row["fimVigencia"].ToString());
+                season.IdTabuleiro = int.Parse(row["idTabuleiro"].ToString());
+                season.Prioridade = int.Parse(row["prioridade"].ToString());
+            }
+            return season;
+        }
+
+        public List<Season> ConsultarSeasons()
+        {
+            List<Season> seasons = new List<Season>();
+            con = new MySqlConnection();
+            con.ConnectionString = db.GetConnectionString();
+
+            string query = "select * from season";
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, con))
+            {
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    Season season = new Season();
+                    season.Id = int.Parse(row["id"].ToString());
+                    season.NomeSeason = row["nomeSeason"].ToString();
+                    season.InicioVigencia = DateTime.Parse(row["inicioVigencia"].ToString());
+                    season.FimVigencia = DateTime.Parse(row["fimVigencia"].ToString());
+                    season.IdTabuleiro = int.Parse(row["idTabuleiro"].ToString());
+                    season.Prioridade = int.Parse(row["prioridade"].ToString());
+                }
+
+            }
+            return seasons;
+        }
+
+        public void InserirSeason(Season season)
+        {
+            con = new MySqlConnection();
+            con.ConnectionString = db.GetConnectionString();
+            jdoDataSet set = new jdoDataSet();
+
+            string query = "insert into season(nomeSeason, inicioVigencia, fimVigencia, idTabuleiro, prioridade) VALUES";
+            query += "(?nomeSeason, ?inicioVigencia, ?fimVigencia, ?idTabuleiro, ?prioridade)";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?nomeSeason", season.NomeSeason);
+                cmd.Parameters.AddWithValue("?inicioVigencia", season.InicioVigencia);
+                cmd.Parameters.AddWithValue("?fimVigencia", season.FimVigencia);
+                cmd.Parameters.AddWithValue("?idTabuleiro", season.IdTabuleiro);
+                cmd.Parameters.AddWithValue("?prioridade", season.Prioridade);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public void AtualizarSeason(Season season)
+        {
+            con = new MySqlConnection();
+            con.ConnectionString = db.GetConnectionString();
+            string query = 
+                "update season SET nomeSeason = ?nomeSeason, inicioVigencia = ?inicioVigencia, fimVigencia = ?fimVigencia, idTabuleiro = ?idTabuleiro, prioridade = ?prioridade";
+            query += " WHERE id = ?id";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?id", season.Id);
+                cmd.Parameters.AddWithValue("?nomeSeason", season.NomeSeason);
+                cmd.Parameters.AddWithValue("?inicioVigencia", season.InicioVigencia);
+                cmd.Parameters.AddWithValue("?fimVigencia", season.FimVigencia);
+                cmd.Parameters.AddWithValue("?idTabuleiro", season.IdTabuleiro);
+                cmd.Parameters.AddWithValue("?prioridade", season.Prioridade);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public bool IsPeriodoDisponivelSeason(int prioridade, DateTime inicioVigencia, DateTime fimVigencia)
+        {
+            List<Season> seasons = new List<Season>();
+            con = new MySqlConnection();
+            con.ConnectionString = db.GetConnectionString();
+
+            string query = string.Format("select * from season where ({0} between inicioVigencia and fimVigencia or {1} between inicioVigencia and fimVigencia) and prioridade = {2}",
+                inicioVigencia.ToString("yyyy/MM/dd"),
+                fimVigencia.ToString("yyyy/MM/dd"),
+                prioridade);
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, con))
+            {
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    Season season = new Season();
+                    season.Id = int.Parse(row["id"].ToString());
+                    season.NomeSeason = row["nomeSeason"].ToString();
+                    season.InicioVigencia = DateTime.Parse(row["inicioVigencia"].ToString());
+                    season.FimVigencia = DateTime.Parse(row["fimVigencia"].ToString());
+                    season.IdTabuleiro = int.Parse(row["idTabuleiro"].ToString());
+                    season.Prioridade = int.Parse(row["prioridade"].ToString());
+
+                    seasons.Add(season);
+                }
+
+            }
+            return seasons.Count == 0;
         }
     }
 }

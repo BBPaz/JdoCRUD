@@ -32,8 +32,9 @@ namespace JdoCRUD
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.visualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skinsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabuleirosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.seasonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,11 +53,11 @@ namespace JdoCRUD
             this.visualizarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.skinsToolStripMenuItem,
             this.tabuleirosToolStripMenuItem,
-            this.testToolStripMenuItem});
+            this.seasonToolStripMenuItem,
+            this.vendasToolStripMenuItem});
             this.visualizarToolStripMenuItem.Name = "visualizarToolStripMenuItem";
             this.visualizarToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
             this.visualizarToolStripMenuItem.Text = "Visualizar";
-            //this.visualizarToolStripMenuItem.Click += new System.EventHandler(this.visualizarToolStripMenuItem);
             // 
             // skinsToolStripMenuItem
             // 
@@ -65,19 +66,26 @@ namespace JdoCRUD
             this.skinsToolStripMenuItem.Text = "Skins";
             this.skinsToolStripMenuItem.Click += new System.EventHandler(this.skinsToolStripMenuItem_Click);
             // 
-            // testToolStripMenuItem
-            // 
-            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.testToolStripMenuItem.Text = "test";
-            this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
-            // 
             // tabuleirosToolStripMenuItem
             // 
             this.tabuleirosToolStripMenuItem.Name = "tabuleirosToolStripMenuItem";
             this.tabuleirosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tabuleirosToolStripMenuItem.Text = "Tabuleiros";
             this.tabuleirosToolStripMenuItem.Click += new System.EventHandler(this.tabuleirosToolStripMenuItem_Click);
+            // 
+            // seasonToolStripMenuItem
+            // 
+            this.seasonToolStripMenuItem.Name = "seasonToolStripMenuItem";
+            this.seasonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.seasonToolStripMenuItem.Text = "Seasons";
+            this.seasonToolStripMenuItem.Click += new System.EventHandler(this.seasonToolStripMenuItem_Click);
+            // 
+            // vendasToolStripMenuItem
+            // 
+            this.vendasToolStripMenuItem.Name = "vendasToolStripMenuItem";
+            this.vendasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.vendasToolStripMenuItem.Text = "Vendas";
+            this.vendasToolStripMenuItem.Click += new System.EventHandler(this.vendasToolStripMenuItem_Click);
             // 
             // Inicio
             // 
@@ -101,8 +109,9 @@ namespace JdoCRUD
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem visualizarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem skinsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tabuleirosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem seasonToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vendasToolStripMenuItem;
     }
 }
 

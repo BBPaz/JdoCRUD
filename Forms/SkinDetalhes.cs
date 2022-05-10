@@ -228,13 +228,20 @@ namespace JdoCRUD.Forms
         {
             skin = ConsolidarObjeto();
             //TODO: Verificação de registros filhos
-            DialogResult resposta = MessageBox.Show("Deseja remover a skin? Esta ação não pode ser revertida.", "Atenção", MessageBoxButtons.YesNo);
-            if (resposta == DialogResult.Yes)
-            {
-                dao.RemoverSkin(skin.Id);
-                MessageBox.Show("Skin removida", "Alerta");
-                Close();
-            }
+            //if (dao.IsRemovivelSkin(skin.Id))
+            //{
+                DialogResult resposta = MessageBox.Show("Deseja remover a skin? Esta ação não pode ser revertida.", "Atenção", MessageBoxButtons.YesNo);
+                if (resposta == DialogResult.Yes)
+                {
+                    dao.RemoverSkin(skin.Id);
+                    MessageBox.Show("Skin removida", "Alerta");
+                    Close();
+                }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Não é possível remover o tabuleiro, pois ele está sendo utilizado em uma ou mais seasons.", "Aviso");
+            //}
         }
 
         private void ExibirImagem(string url)

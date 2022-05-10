@@ -30,7 +30,7 @@ namespace JdoCRUD.Properties {
             "tedb;persistsecurityinfo=True;database=testedb;port=25060;")]
         public string testedbConnectionString {
             get {
-                return ((string)(this["testedbConnectionString"]));
+                return ((string)helper.Instancia.GetConnectionString());
             }
         }
     }

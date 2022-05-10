@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 
-namespace JdoCRUD.DAO
+namespace JdoCRUD
 {
     public sealed class helper
     {
@@ -16,12 +16,10 @@ namespace JdoCRUD.DAO
         }
         private helper() { }
 
-        private string imageStorage;
-
         public string GetConnectionString()
         {
             string senhaSalva;
-            string connectionString = ConfigurationManager.ConnectionStrings["JdoCRUD.Properties.Settings.jdoConnectionString"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["JdoCRUD.Properties.Settings.testedbConnectionString"].ConnectionString;
             string caminhoSenha = AppDomain.CurrentDomain.BaseDirectory + "senha.txt";
             if (System.IO.File.Exists(caminhoSenha))
             {

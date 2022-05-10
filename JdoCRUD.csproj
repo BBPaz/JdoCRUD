@@ -78,6 +78,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\JdoDAO.cs" />
+    <Compile Include="Forms\SeasonDetalhes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SeasonDetalhes.Designer.cs">
+      <DependentUpon>SeasonDetalhes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SeasonLista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SeasonLista.Designer.cs">
+      <DependentUpon>SeasonLista.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\VendaDetalhes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VendaDetalhes.Designer.cs">
+      <DependentUpon>VendaDetalhes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\VendaLista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\VendaLista.Designer.cs">
+      <DependentUpon>VendaLista.cs</DependentUpon>
+    </Compile>
     <Compile Include="helper.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -115,9 +139,6 @@
     <Compile Include="Forms\test.Designer.cs">
       <DependentUpon>test.cs</DependentUpon>
     </Compile>
-    <Compile Include="jdoDataSet.cs">
-      <DependentUpon>jdoDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="jdoDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -131,6 +152,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SeasonDetalhes.resx">
+      <DependentUpon>SeasonDetalhes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SeasonLista.resx">
+      <DependentUpon>SeasonLista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SkinDetalhes.resx">
       <DependentUpon>SkinDetalhes.cs</DependentUpon>
@@ -146,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\test.resx">
       <DependentUpon>test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\VendaLista.resx">
+      <DependentUpon>VendaLista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

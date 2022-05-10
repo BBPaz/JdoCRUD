@@ -50,5 +50,17 @@ namespace JdoCRUD
             TabuleiroLista tabuleiroLista = new TabuleiroLista();
             tabuleiroLista.ShowDialog();
         }
+
+        private void seasonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SeasonLista seasonLista = new SeasonLista();
+            seasonLista.ShowDialog();
+        }
+
+        private void vendasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VendaLista vendaLista = new VendaLista();
+            vendaLista.ShowDialog();
+        }
     }
 }

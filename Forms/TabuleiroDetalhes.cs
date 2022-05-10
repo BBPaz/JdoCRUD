@@ -178,12 +178,22 @@ namespace JdoCRUD.Forms
         {
             Tabuleiro tabuleiro = ConsolidarObjeto();
             //TODO: Verificação de registros filhos
-            DialogResult resposta = MessageBox.Show("Deseja remover o tabuleiro? Esta ação não pode ser revertida.", "Atenção", MessageBoxButtons.YesNo);
-            if (controller.Remover(tabuleiro.Id))
+            
+            if (controller.VerificarRemovivel(tabuleiro.Id))
             {
-                MessageBox.Show("Tabuleiro removido", "Alerta");
-                Close();
+                DialogResult resposta = MessageBox.Show("Deseja remover o tabuleiro? Esta ação não pode ser revertida.", "Atenção", MessageBoxButtons.YesNo);
+                if (resposta == DialogResult.Yes)
+                    if (controller.Remover(tabuleiro.Id))
+                    {
+                        MessageBox.Show("Tabuleiro removido", "Aviso");
+                        Close();
+                    }
             }
+            else
+            {
+                MessageBox.Show("Não é possível remover o tabuleiro, pois ele está sendo utilizado em uma ou mais seasons.", "Aviso");
+            }
+
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -305,6 +315,11 @@ namespace JdoCRUD.Forms
 
             return result.Content.ReadAsStringAsync().Result;
 
+        }
+
+        internal bool VerificarRemovivel(int idTabuleiro)
+        {
+           return dao.IsRemovivelTabuleiro(idTabuleiro);
         }
     }
 }

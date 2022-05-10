@@ -10,8 +10,6 @@
 
 #pragma warning disable 1591
 
-using JdoCRUD.DAO;
-
 namespace JdoCRUD {
     
     
@@ -285,7 +283,6 @@ namespace JdoCRUD {
             this.DataSetName = "jdoDataSet";
             this.Prefix = "";
             this.Namespace = "http://tempuri.org/jdoDataSet.xsd";
-            this.Locale = new global::System.Globalization.CultureInfo("pt-BR");
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableseason = new seasonDataTable();
@@ -418,6 +415,8 @@ namespace JdoCRUD {
             
             private global::System.Data.DataColumn columnidTabuleiro;
             
+            private global::System.Data.DataColumn columnprioridade;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public seasonDataTable() {
@@ -493,6 +492,14 @@ namespace JdoCRUD {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn prioridadeColumn {
+                get {
+                    return this.columnprioridade;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -528,14 +535,15 @@ namespace JdoCRUD {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public seasonRow AddseasonRow(string nomeSeason, System.DateTime inicioVigencia, System.DateTime fimVigencia, tabuleiroRow parenttabuleiroRowByseason_ibfk_1) {
+            public seasonRow AddseasonRow(string nomeSeason, System.DateTime inicioVigencia, System.DateTime fimVigencia, tabuleiroRow parenttabuleiroRowByseason_ibfk_1, sbyte prioridade) {
                 seasonRow rowseasonRow = ((seasonRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         nomeSeason,
                         inicioVigencia,
                         fimVigencia,
-                        null};
+                        null,
+                        prioridade};
                 if ((parenttabuleiroRowByseason_ibfk_1 != null)) {
                     columnValuesArray[4] = parenttabuleiroRowByseason_ibfk_1[0];
                 }
@@ -573,6 +581,7 @@ namespace JdoCRUD {
                 this.columninicioVigencia = base.Columns["inicioVigencia"];
                 this.columnfimVigencia = base.Columns["fimVigencia"];
                 this.columnidTabuleiro = base.Columns["idTabuleiro"];
+                this.columnprioridade = base.Columns["prioridade"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -588,6 +597,8 @@ namespace JdoCRUD {
                 base.Columns.Add(this.columnfimVigencia);
                 this.columnidTabuleiro = new global::System.Data.DataColumn("idTabuleiro", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnidTabuleiro);
+                this.columnprioridade = new global::System.Data.DataColumn("prioridade", typeof(sbyte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnprioridade);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AutoIncrement = true;
@@ -595,8 +606,12 @@ namespace JdoCRUD {
                 this.columnid.AutoIncrementStep = -1;
                 this.columnid.AllowDBNull = false;
                 this.columnid.Unique = true;
+                this.columnnomeSeason.AllowDBNull = false;
                 this.columnnomeSeason.MaxLength = 31;
+                this.columninicioVigencia.AllowDBNull = false;
+                this.columnfimVigencia.AllowDBNull = false;
                 this.columnidTabuleiro.AllowDBNull = false;
+                this.columnprioridade.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -736,8 +751,6 @@ namespace JdoCRUD {
             
             private global::System.Data.DataColumn columnimagemSkin;
             
-            private global::System.Data.DataColumn columnehPermanente;
-            
             private global::System.Data.DataColumn columntipoPeca;
             
             private global::System.Data.DataColumn columncorTematica;
@@ -801,14 +814,6 @@ namespace JdoCRUD {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn ehPermanenteColumn {
-                get {
-                    return this.columnehPermanente;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn tipoPecaColumn {
                 get {
                     return this.columntipoPeca;
@@ -860,13 +865,12 @@ namespace JdoCRUD {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public skinRow AddskinRow(string nomeSkin, string imagemSkin, bool ehPermanente, sbyte tipoPeca, string corTematica) {
+            public skinRow AddskinRow(string nomeSkin, string imagemSkin, sbyte tipoPeca, string corTematica) {
                 skinRow rowskinRow = ((skinRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         nomeSkin,
                         imagemSkin,
-                        ehPermanente,
                         tipoPeca,
                         corTematica};
                 rowskinRow.ItemArray = columnValuesArray;
@@ -901,7 +905,6 @@ namespace JdoCRUD {
                 this.columnid = base.Columns["id"];
                 this.columnnomeSkin = base.Columns["nomeSkin"];
                 this.columnimagemSkin = base.Columns["imagemSkin"];
-                this.columnehPermanente = base.Columns["ehPermanente"];
                 this.columntipoPeca = base.Columns["tipoPeca"];
                 this.columncorTematica = base.Columns["corTematica"];
             }
@@ -915,8 +918,6 @@ namespace JdoCRUD {
                 base.Columns.Add(this.columnnomeSkin);
                 this.columnimagemSkin = new global::System.Data.DataColumn("imagemSkin", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnimagemSkin);
-                this.columnehPermanente = new global::System.Data.DataColumn("ehPermanente", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnehPermanente);
                 this.columntipoPeca = new global::System.Data.DataColumn("tipoPeca", typeof(sbyte), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntipoPeca);
                 this.columncorTematica = new global::System.Data.DataColumn("corTematica", typeof(string), null, global::System.Data.MappingType.Element);
@@ -928,9 +929,13 @@ namespace JdoCRUD {
                 this.columnid.AutoIncrementStep = -1;
                 this.columnid.AllowDBNull = false;
                 this.columnid.Unique = true;
+                this.columnnomeSkin.AllowDBNull = false;
                 this.columnnomeSkin.MaxLength = 31;
+                this.columnimagemSkin.AllowDBNull = false;
                 this.columnimagemSkin.MaxLength = 255;
-                this.columncorTematica.MaxLength = 8;
+                this.columntipoPeca.AllowDBNull = false;
+                this.columncorTematica.AllowDBNull = false;
+                this.columncorTematica.MaxLength = 9;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1066,13 +1071,13 @@ namespace JdoCRUD {
             
             private global::System.Data.DataColumn columnid;
             
+            private global::System.Data.DataColumn columnnomeTabuleiro;
+            
             private global::System.Data.DataColumn columnimagemTabuleiro;
             
             private global::System.Data.DataColumn columndtCriacao;
             
             private global::System.Data.DataColumn columncorTematica;
-            
-            private global::System.Data.DataColumn columnnomeTabuleiro;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -1117,6 +1122,14 @@ namespace JdoCRUD {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn nomeTabuleiroColumn {
+                get {
+                    return this.columnnomeTabuleiro;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn imagemTabuleiroColumn {
                 get {
                     return this.columnimagemTabuleiro;
@@ -1136,14 +1149,6 @@ namespace JdoCRUD {
             public global::System.Data.DataColumn corTematicaColumn {
                 get {
                     return this.columncorTematica;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn nomeTabuleiroColumn {
-                get {
-                    return this.columnnomeTabuleiro;
                 }
             }
             
@@ -1184,14 +1189,14 @@ namespace JdoCRUD {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public tabuleiroRow AddtabuleiroRow(string imagemTabuleiro, System.DateTime dtCriacao, string corTematica, string nomeTabuleiro) {
+            public tabuleiroRow AddtabuleiroRow(string nomeTabuleiro, string imagemTabuleiro, System.DateTime dtCriacao, string corTematica) {
                 tabuleiroRow rowtabuleiroRow = ((tabuleiroRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
+                        nomeTabuleiro,
                         imagemTabuleiro,
                         dtCriacao,
-                        corTematica,
-                        nomeTabuleiro};
+                        corTematica};
                 rowtabuleiroRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtabuleiroRow);
                 return rowtabuleiroRow;
@@ -1222,10 +1227,10 @@ namespace JdoCRUD {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
                 this.columnid = base.Columns["id"];
+                this.columnnomeTabuleiro = base.Columns["nomeTabuleiro"];
                 this.columnimagemTabuleiro = base.Columns["imagemTabuleiro"];
                 this.columndtCriacao = base.Columns["dtCriacao"];
                 this.columncorTematica = base.Columns["corTematica"];
-                this.columnnomeTabuleiro = base.Columns["nomeTabuleiro"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1233,14 +1238,14 @@ namespace JdoCRUD {
             private void InitClass() {
                 this.columnid = new global::System.Data.DataColumn("id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnid);
+                this.columnnomeTabuleiro = new global::System.Data.DataColumn("nomeTabuleiro", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnomeTabuleiro);
                 this.columnimagemTabuleiro = new global::System.Data.DataColumn("imagemTabuleiro", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnimagemTabuleiro);
                 this.columndtCriacao = new global::System.Data.DataColumn("dtCriacao", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndtCriacao);
                 this.columncorTematica = new global::System.Data.DataColumn("corTematica", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncorTematica);
-                this.columnnomeTabuleiro = new global::System.Data.DataColumn("nomeTabuleiro", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnomeTabuleiro);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AutoIncrement = true;
@@ -1248,12 +1253,13 @@ namespace JdoCRUD {
                 this.columnid.AutoIncrementStep = -1;
                 this.columnid.AllowDBNull = false;
                 this.columnid.Unique = true;
+                this.columnnomeTabuleiro.AllowDBNull = false;
+                this.columnnomeTabuleiro.MaxLength = 45;
                 this.columnimagemTabuleiro.AllowDBNull = false;
                 this.columnimagemTabuleiro.MaxLength = 255;
                 this.columndtCriacao.AllowDBNull = false;
                 this.columncorTematica.AllowDBNull = false;
                 this.columncorTematica.MaxLength = 8;
-                this.columnnomeTabuleiro.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1720,12 +1726,7 @@ namespace JdoCRUD {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string nomeSeason {
                 get {
-                    try {
-                        return ((string)(this[this.tableseason.nomeSeasonColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'nomeSeason\' in table \'season\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableseason.nomeSeasonColumn]));
                 }
                 set {
                     this[this.tableseason.nomeSeasonColumn] = value;
@@ -1736,12 +1737,7 @@ namespace JdoCRUD {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public System.DateTime inicioVigencia {
                 get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableseason.inicioVigenciaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'inicioVigencia\' in table \'season\' is DBNull.", e);
-                    }
+                    return ((global::System.DateTime)(this[this.tableseason.inicioVigenciaColumn]));
                 }
                 set {
                     this[this.tableseason.inicioVigenciaColumn] = value;
@@ -1752,12 +1748,7 @@ namespace JdoCRUD {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public System.DateTime fimVigencia {
                 get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableseason.fimVigenciaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'fimVigencia\' in table \'season\' is DBNull.", e);
-                    }
+                    return ((global::System.DateTime)(this[this.tableseason.fimVigenciaColumn]));
                 }
                 set {
                     this[this.tableseason.fimVigenciaColumn] = value;
@@ -1777,6 +1768,17 @@ namespace JdoCRUD {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public sbyte prioridade {
+                get {
+                    return ((sbyte)(this[this.tableseason.prioridadeColumn]));
+                }
+                set {
+                    this[this.tableseason.prioridadeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public tabuleiroRow tabuleiroRow {
                 get {
                     return ((tabuleiroRow)(this.GetParentRow(this.Table.ParentRelations["season_ibfk_1"])));
@@ -1784,42 +1786,6 @@ namespace JdoCRUD {
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["season_ibfk_1"]);
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsnomeSeasonNull() {
-                return this.IsNull(this.tableseason.nomeSeasonColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetnomeSeasonNull() {
-                this[this.tableseason.nomeSeasonColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsinicioVigenciaNull() {
-                return this.IsNull(this.tableseason.inicioVigenciaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetinicioVigenciaNull() {
-                this[this.tableseason.inicioVigenciaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsfimVigenciaNull() {
-                return this.IsNull(this.tableseason.fimVigenciaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetfimVigenciaNull() {
-                this[this.tableseason.fimVigenciaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1863,12 +1829,7 @@ namespace JdoCRUD {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string nomeSkin {
                 get {
-                    try {
-                        return ((string)(this[this.tableskin.nomeSkinColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'nomeSkin\' in table \'skin\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableskin.nomeSkinColumn]));
                 }
                 set {
                     this[this.tableskin.nomeSkinColumn] = value;
@@ -1879,12 +1840,7 @@ namespace JdoCRUD {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string imagemSkin {
                 get {
-                    try {
-                        return ((string)(this[this.tableskin.imagemSkinColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'imagemSkin\' in table \'skin\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableskin.imagemSkinColumn]));
                 }
                 set {
                     this[this.tableskin.imagemSkinColumn] = value;
@@ -1893,30 +1849,9 @@ namespace JdoCRUD {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool ehPermanente {
-                get {
-                    try {
-                        return ((bool)(this[this.tableskin.ehPermanenteColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ehPermanente\' in table \'skin\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableskin.ehPermanenteColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public sbyte tipoPeca {
                 get {
-                    try {
-                        return ((sbyte)(this[this.tableskin.tipoPecaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'tipoPeca\' in table \'skin\' is DBNull.", e);
-                    }
+                    return ((sbyte)(this[this.tableskin.tipoPecaColumn]));
                 }
                 set {
                     this[this.tableskin.tipoPecaColumn] = value;
@@ -1927,76 +1862,11 @@ namespace JdoCRUD {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string corTematica {
                 get {
-                    try {
-                        return ((string)(this[this.tableskin.corTematicaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'corTematica\' in table \'skin\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableskin.corTematicaColumn]));
                 }
                 set {
                     this[this.tableskin.corTematicaColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsnomeSkinNull() {
-                return this.IsNull(this.tableskin.nomeSkinColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetnomeSkinNull() {
-                this[this.tableskin.nomeSkinColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsimagemSkinNull() {
-                return this.IsNull(this.tableskin.imagemSkinColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetimagemSkinNull() {
-                this[this.tableskin.imagemSkinColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsehPermanenteNull() {
-                return this.IsNull(this.tableskin.ehPermanenteColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetehPermanenteNull() {
-                this[this.tableskin.ehPermanenteColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IstipoPecaNull() {
-                return this.IsNull(this.tableskin.tipoPecaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SettipoPecaNull() {
-                this[this.tableskin.tipoPecaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IscorTematicaNull() {
-                return this.IsNull(this.tableskin.corTematicaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetcorTematicaNull() {
-                this[this.tableskin.corTematicaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2038,6 +1908,17 @@ namespace JdoCRUD {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string nomeTabuleiro {
+                get {
+                    return ((string)(this[this.tabletabuleiro.nomeTabuleiroColumn]));
+                }
+                set {
+                    this[this.tabletabuleiro.nomeTabuleiroColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string imagemTabuleiro {
                 get {
                     return ((string)(this[this.tabletabuleiro.imagemTabuleiroColumn]));
@@ -2066,17 +1947,6 @@ namespace JdoCRUD {
                 }
                 set {
                     this[this.tabletabuleiro.corTematicaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string nomeTabuleiro {
-                get {
-                    return ((string)(this[this.tabletabuleiro.nomeTabuleiroColumn]));
-                }
-                set {
-                    this[this.tabletabuleiro.nomeTabuleiroColumn] = value;
                 }
             }
             
@@ -2456,10 +2326,13 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("inicioVigencia", "inicioVigencia");
             tableMapping.ColumnMappings.Add("fimVigencia", "fimVigencia");
             tableMapping.ColumnMappings.Add("idTabuleiro", "idTabuleiro");
+            tableMapping.ColumnMappings.Add("prioridade", "prioridade");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `season` WHERE ((`id` = @p1) AND ((@p2 = 1 AND `nomeSeason` IS NULL) OR (`nomeSeason` = @p3)) AND ((@p4 = 1 AND `inicioVigencia` IS NULL) OR (`inicioVigencia` = @p5)) AND ((@p6 = 1 AND `fimVigencia` IS NULL) OR (`fimVigencia` = @p7)) AND (`idTabuleiro` = @p8))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM `season` WHERE ((`id` = @p1) AND (`nomeSeason` = @p2) AND (`inicioVig" +
+                "encia` = @p3) AND (`fimVigencia` = @p4) AND (`idTabuleiro` = @p5) AND (`priorida" +
+                "de` = @p6))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -2471,66 +2344,47 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p2";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "nomeSeason";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p3";
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
             param.SourceColumn = "nomeSeason";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p4";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.ParameterName = "@p3";
+            param.DbType = global::System.Data.DbType.Date;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Date;
             param.IsNullable = true;
             param.SourceColumn = "inicioVigencia";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p4";
+            param.DbType = global::System.Data.DbType.Date;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Date;
+            param.IsNullable = true;
+            param.SourceColumn = "fimVigencia";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p5";
-            param.DbType = global::System.Data.DbType.Date;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Date;
-            param.IsNullable = true;
-            param.SourceColumn = "inicioVigencia";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p6";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "fimVigencia";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p7";
-            param.DbType = global::System.Data.DbType.Date;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Date;
-            param.IsNullable = true;
-            param.SourceColumn = "fimVigencia";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p8";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "idTabuleiro";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p6";
+            param.DbType = global::System.Data.DbType.SByte;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
+            param.IsNullable = true;
+            param.SourceColumn = "prioridade";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO `season` (`nomeSeason`, `inicioVigencia`, `fimVigencia`, `idTabuleiro" +
-                "`) VALUES (@p1, @p2, @p3, @p4)";
+                "`, `prioridade`) VALUES (@p1, @p2, @p3, @p4, @p5)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -2563,9 +2417,17 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             param.SourceColumn = "idTabuleiro";
             param.SourceVersion = global::System.Data.DataRowVersion.Current;
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p5";
+            param.DbType = global::System.Data.DbType.SByte;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
+            param.IsNullable = true;
+            param.SourceColumn = "prioridade";
+            param.SourceVersion = global::System.Data.DataRowVersion.Current;
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `season` SET `nomeSeason` = @p1, `inicioVigencia` = @p2, `fimVigencia` = @p3, `idTabuleiro` = @p4 WHERE ((`id` = @p5) AND ((@p6 = 1 AND `nomeSeason` IS NULL) OR (`nomeSeason` = @p7)) AND ((@p8 = 1 AND `inicioVigencia` IS NULL) OR (`inicioVigencia` = @p9)) AND ((@p10 = 1 AND `fimVigencia` IS NULL) OR (`fimVigencia` = @p11)) AND (`idTabuleiro` = @p12))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `season` SET `nomeSeason` = @p1, `inicioVigencia` = @p2, `fimVigencia` = @p3, `idTabuleiro` = @p4, `prioridade` = @p5 WHERE ((`id` = @p6) AND (`nomeSeason` = @p7) AND (`inicioVigencia` = @p8) AND (`fimVigencia` = @p9) AND (`idTabuleiro` = @p10) AND (`prioridade` = @p11))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -2600,20 +2462,19 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p5";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.DbType = global::System.Data.DbType.SByte;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
             param.IsNullable = true;
-            param.SourceColumn = "id";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumn = "prioridade";
+            param.SourceVersion = global::System.Data.DataRowVersion.Current;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p6";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "nomeSeason";
+            param.SourceColumn = "id";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p7";
@@ -2624,19 +2485,18 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p8";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.DbType = global::System.Data.DbType.Date;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Date;
             param.IsNullable = true;
             param.SourceColumn = "inicioVigencia";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p9";
             param.DbType = global::System.Data.DbType.Date;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Date;
             param.IsNullable = true;
-            param.SourceColumn = "inicioVigencia";
+            param.SourceColumn = "fimVigencia";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
@@ -2644,24 +2504,15 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "fimVigencia";
+            param.SourceColumn = "idTabuleiro";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p11";
-            param.DbType = global::System.Data.DbType.Date;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Date;
+            param.DbType = global::System.Data.DbType.SByte;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
             param.IsNullable = true;
-            param.SourceColumn = "fimVigencia";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p12";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "idTabuleiro";
+            param.SourceColumn = "prioridade";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
         }
@@ -2670,7 +2521,7 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = helper.Instancia.GetConnectionString();
+            this._connection.ConnectionString = global::JdoCRUD.Properties.Settings.Default.testedbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2679,8 +2530,8 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[1];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT `id`, `nomeSeason`, `inicioVigencia`, `fimVigencia`, `idTabuleiro` FROM `s" +
-                "eason`";
+            this._commandCollection[0].CommandText = "SELECT `id`, `nomeSeason`, `inicioVigencia`, `fimVigencia`, `idTabuleiro`, `prior" +
+                "idade` FROM `season`";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2741,33 +2592,18 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int p1, string p3, global::System.Nullable<global::System.DateTime> p5, global::System.Nullable<global::System.DateTime> p7, int p8) {
+        public virtual int Delete(int p1, string p2, System.DateTime p3, System.DateTime p4, int p5, byte p6) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(p1));
-            if ((p3 == null)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            if ((p2 == null)) {
+                throw new global::System.ArgumentNullException("p2");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(p3));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(p2));
             }
-            if ((p5.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((System.DateTime)(p5.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((p7.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((System.DateTime)(p7.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.DeleteCommand.Parameters[7].Value = ((int)(p8));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(p3));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((System.DateTime)(p4));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(p5));
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((byte)(p6));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2788,26 +2624,17 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string p1, global::System.Nullable<global::System.DateTime> p2, global::System.Nullable<global::System.DateTime> p3, int p4) {
+        public virtual int Insert(string p1, System.DateTime p2, System.DateTime p3, int p4, byte p5) {
             if ((p1 == null)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("p1");
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(p1));
             }
-            if ((p2.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(p2.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((p3.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(p3.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(p2));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(p3));
             this.Adapter.InsertCommand.Parameters[3].Value = ((int)(p4));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((byte)(p5));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -2828,52 +2655,28 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string p1, global::System.Nullable<global::System.DateTime> p2, global::System.Nullable<global::System.DateTime> p3, int p4, int p5, string p7, global::System.Nullable<global::System.DateTime> p9, global::System.Nullable<global::System.DateTime> p11, int p12) {
+        public virtual int Update(string p1, System.DateTime p2, System.DateTime p3, int p4, byte p5, int p6, string p7, System.DateTime p8, System.DateTime p9, int p10, byte p11) {
             if ((p1 == null)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("p1");
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(p1));
             }
-            if ((p2.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(p2.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((p3.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(p3.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(p2));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(p3));
             this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(p4));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(p5));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((byte)(p5));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(p6));
             if ((p7 == null)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("p7");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(p7));
             }
-            if ((p9.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(p9.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((p11.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(p11.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(p12));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(p8));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(p9));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(p10));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((byte)(p11));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3015,13 +2818,13 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("id", "id");
             tableMapping.ColumnMappings.Add("nomeSkin", "nomeSkin");
             tableMapping.ColumnMappings.Add("imagemSkin", "imagemSkin");
-            tableMapping.ColumnMappings.Add("ehPermanente", "ehPermanente");
             tableMapping.ColumnMappings.Add("tipoPeca", "tipoPeca");
             tableMapping.ColumnMappings.Add("corTematica", "corTematica");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `skin` WHERE ((`id` = @p1) AND ((@p2 = 1 AND `nomeSkin` IS NULL) OR (`nomeSkin` = @p3)) AND ((@p4 = 1 AND `imagemSkin` IS NULL) OR (`imagemSkin` = @p5)) AND ((@p6 = 1 AND `ehPermanente` IS NULL) OR (`ehPermanente` = @p7)) AND ((@p8 = 1 AND `tipoPeca` IS NULL) OR (`tipoPeca` = @p9)) AND ((@p10 = 1 AND `corTematica` IS NULL) OR (`corTematica` = @p11)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM `skin` WHERE ((`id` = @p1) AND (`nomeSkin` = @p2) AND (`imagemSkin` =" +
+                " @p3) AND (`tipoPeca` = @p4) AND (`corTematica` = @p5))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -3033,81 +2836,28 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p2";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
             param.SourceColumn = "nomeSkin";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p3";
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
-            param.SourceColumn = "nomeSkin";
+            param.SourceColumn = "imagemSkin";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p4";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.DbType = global::System.Data.DbType.SByte;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
             param.IsNullable = true;
-            param.SourceColumn = "imagemSkin";
+            param.SourceColumn = "tipoPeca";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p5";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "imagemSkin";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p6";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "ehPermanente";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p7";
-            param.DbType = global::System.Data.DbType.SByte;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
-            param.IsNullable = true;
-            param.SourceColumn = "ehPermanente";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p8";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "tipoPeca";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p9";
-            param.DbType = global::System.Data.DbType.SByte;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
-            param.IsNullable = true;
-            param.SourceColumn = "tipoPeca";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p10";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "corTematica";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p11";
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
             param.SourceColumn = "corTematica";
@@ -3115,8 +2865,8 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `skin` (`nomeSkin`, `imagemSkin`, `ehPermanente`, `tipoPeca`, `corTem" +
-                "atica`) VALUES (@p1, @p2, @p3, @p4, @p5)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `skin` (`nomeSkin`, `imagemSkin`, `tipoPeca`, `corTematica`) VALUES (" +
+                "@p1, @p2, @p3, @p4)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -3137,19 +2887,11 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             param.DbType = global::System.Data.DbType.SByte;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
             param.IsNullable = true;
-            param.SourceColumn = "ehPermanente";
-            param.SourceVersion = global::System.Data.DataRowVersion.Current;
-            this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p4";
-            param.DbType = global::System.Data.DbType.SByte;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
-            param.IsNullable = true;
             param.SourceColumn = "tipoPeca";
             param.SourceVersion = global::System.Data.DataRowVersion.Current;
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p5";
+            param.ParameterName = "@p4";
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
             param.SourceColumn = "corTematica";
@@ -3157,7 +2899,9 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `skin` SET `nomeSkin` = @p1, `imagemSkin` = @p2, `ehPermanente` = @p3, `tipoPeca` = @p4, `corTematica` = @p5 WHERE ((`id` = @p6) AND ((@p7 = 1 AND `nomeSkin` IS NULL) OR (`nomeSkin` = @p8)) AND ((@p9 = 1 AND `imagemSkin` IS NULL) OR (`imagemSkin` = @p10)) AND ((@p11 = 1 AND `ehPermanente` IS NULL) OR (`ehPermanente` = @p12)) AND ((@p13 = 1 AND `tipoPeca` IS NULL) OR (`tipoPeca` = @p14)) AND ((@p15 = 1 AND `corTematica` IS NULL) OR (`corTematica` = @p16)))";
+            this._adapter.UpdateCommand.CommandText = "UPDATE `skin` SET `nomeSkin` = @p1, `imagemSkin` = @p2, `tipoPeca` = @p3, `corTem" +
+                "atica` = @p4 WHERE ((`id` = @p5) AND (`nomeSkin` = @p6) AND (`imagemSkin` = @p7)" +
+                " AND (`tipoPeca` = @p8) AND (`corTematica` = @p9))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -3178,26 +2922,18 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             param.DbType = global::System.Data.DbType.SByte;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
             param.IsNullable = true;
-            param.SourceColumn = "ehPermanente";
-            param.SourceVersion = global::System.Data.DataRowVersion.Current;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p4";
-            param.DbType = global::System.Data.DbType.SByte;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
-            param.IsNullable = true;
             param.SourceColumn = "tipoPeca";
             param.SourceVersion = global::System.Data.DataRowVersion.Current;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p5";
+            param.ParameterName = "@p4";
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
             param.SourceColumn = "corTematica";
             param.SourceVersion = global::System.Data.DataRowVersion.Current;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p6";
+            param.ParameterName = "@p5";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
@@ -3205,82 +2941,29 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p7";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "nomeSkin";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p8";
+            param.ParameterName = "@p6";
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
             param.SourceColumn = "nomeSkin";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p7";
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "imagemSkin";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p8";
+            param.DbType = global::System.Data.DbType.SByte;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
+            param.IsNullable = true;
+            param.SourceColumn = "tipoPeca";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p9";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "imagemSkin";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p10";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "imagemSkin";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p11";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "ehPermanente";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p12";
-            param.DbType = global::System.Data.DbType.SByte;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
-            param.IsNullable = true;
-            param.SourceColumn = "ehPermanente";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p13";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "tipoPeca";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p14";
-            param.DbType = global::System.Data.DbType.SByte;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
-            param.IsNullable = true;
-            param.SourceColumn = "tipoPeca";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p15";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "corTematica";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p16";
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
             param.SourceColumn = "corTematica";
@@ -3292,7 +2975,7 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = helper.Instancia.GetConnectionString();
+            this._connection.ConnectionString = global::JdoCRUD.Properties.Settings.Default.testedbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3301,8 +2984,7 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[1];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT `id`, `nomeSkin`, `imagemSkin`, `ehPermanente`, `tipoPeca`, `corTematica` " +
-                "FROM `skin`";
+            this._commandCollection[0].CommandText = "SELECT `id`, `nomeSkin`, `imagemSkin`, `tipoPeca`, `corTematica` FROM `skin`";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3363,47 +3045,26 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int p1, string p3, string p5, global::System.Nullable<byte> p7, global::System.Nullable<byte> p9, string p11) {
+        public virtual int Delete(int p1, string p2, string p3, byte p4, string p5) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(p1));
-            if ((p3 == null)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            if ((p2 == null)) {
+                throw new global::System.ArgumentNullException("p2");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(p2));
+            }
+            if ((p3 == null)) {
+                throw new global::System.ArgumentNullException("p3");
+            }
+            else {
                 this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(p3));
             }
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((byte)(p4));
             if ((p5 == null)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("p5");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(p5));
-            }
-            if ((p7.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((byte)(p7.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((p9.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((byte)(p9.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((p11 == null)) {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(p11));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3425,36 +3086,25 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string p1, string p2, global::System.Nullable<byte> p3, global::System.Nullable<byte> p4, string p5) {
+        public virtual int Insert(string p1, string p2, byte p3, string p4) {
             if ((p1 == null)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("p1");
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(p1));
             }
             if ((p2 == null)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("p2");
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(p2));
             }
-            if ((p3.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((byte)(p3.Value));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((byte)(p3));
+            if ((p4 == null)) {
+                throw new global::System.ArgumentNullException("p4");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((p4.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((byte)(p4.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((p5 == null)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(p5));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(p4));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3476,77 +3126,45 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string p1, string p2, global::System.Nullable<byte> p3, global::System.Nullable<byte> p4, string p5, int p6, string p8, string p10, global::System.Nullable<byte> p12, global::System.Nullable<byte> p14, string p16) {
+        public virtual int Update(string p1, string p2, byte p3, string p4, int p5, string p6, string p7, byte p8, string p9) {
             if ((p1 == null)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("p1");
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(p1));
             }
             if ((p2 == null)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+                throw new global::System.ArgumentNullException("p2");
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(p2));
             }
-            if ((p3.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((byte)(p3.Value));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((byte)(p3));
+            if ((p4 == null)) {
+                throw new global::System.ArgumentNullException("p4");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(p4));
             }
-            if ((p4.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((byte)(p4.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((p5 == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(p5));
+            if ((p6 == null)) {
+                throw new global::System.ArgumentNullException("p6");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(p5));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(p6));
             }
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(p6));
-            if ((p8 == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            if ((p7 == null)) {
+                throw new global::System.ArgumentNullException("p7");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(p8));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(p7));
             }
-            if ((p10 == null)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(p10));
-            }
-            if ((p12.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((byte)(p12.Value));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((byte)(p8));
+            if ((p9 == null)) {
+                throw new global::System.ArgumentNullException("p9");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            if ((p14.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((byte)(p14.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            if ((p16 == null)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(p16));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(p9));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3687,15 +3305,15 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "tabuleiro";
             tableMapping.ColumnMappings.Add("id", "id");
+            tableMapping.ColumnMappings.Add("nomeTabuleiro", "nomeTabuleiro");
             tableMapping.ColumnMappings.Add("imagemTabuleiro", "imagemTabuleiro");
             tableMapping.ColumnMappings.Add("dtCriacao", "dtCriacao");
             tableMapping.ColumnMappings.Add("corTematica", "corTematica");
-            tableMapping.ColumnMappings.Add("nomeTabuleiro", "nomeTabuleiro");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM `tabuleiro` WHERE ((`id` = @p1) AND (`imagemTabuleiro` = @p2) AND (`d" +
-                "tCriacao` = @p3) AND (`corTematica` = @p4) AND (`nomeTabuleiro` = @p5))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM `tabuleiro` WHERE ((`id` = @p1) AND (`nomeTabuleiro` = @p2) AND (`ima" +
+                "gemTabuleiro` = @p3) AND (`dtCriacao` = @p4) AND (`corTematica` = @p5))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -3709,45 +3327,52 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             param.ParameterName = "@p2";
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
-            param.SourceColumn = "imagemTabuleiro";
+            param.SourceColumn = "nomeTabuleiro";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p3";
-            param.DbType = global::System.Data.DbType.Date;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Date;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
-            param.SourceColumn = "dtCriacao";
+            param.SourceColumn = "imagemTabuleiro";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p4";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.DbType = global::System.Data.DbType.Date;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Date;
             param.IsNullable = true;
-            param.SourceColumn = "corTematica";
+            param.SourceColumn = "dtCriacao";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p5";
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
-            param.SourceColumn = "nomeTabuleiro";
+            param.SourceColumn = "corTematica";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `tabuleiro` (`imagemTabuleiro`, `dtCriacao`, `corTematica`, `nomeTabu" +
-                "leiro`) VALUES (@p1, @p2, @p3, @p4)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `tabuleiro` (`nomeTabuleiro`, `imagemTabuleiro`, `dtCriacao`, `corTem" +
+                "atica`) VALUES (@p1, @p2, @p3, @p4)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
-            param.SourceColumn = "imagemTabuleiro";
+            param.SourceColumn = "nomeTabuleiro";
             param.SourceVersion = global::System.Data.DataRowVersion.Current;
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p2";
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "imagemTabuleiro";
+            param.SourceVersion = global::System.Data.DataRowVersion.Current;
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p3";
             param.DbType = global::System.Data.DbType.Date;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Date;
             param.IsNullable = true;
@@ -3755,34 +3380,34 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Current;
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p3";
+            param.ParameterName = "@p4";
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
             param.SourceColumn = "corTematica";
             param.SourceVersion = global::System.Data.DataRowVersion.Current;
             this._adapter.InsertCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p4";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "nomeTabuleiro";
-            param.SourceVersion = global::System.Data.DataRowVersion.Current;
-            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE `tabuleiro` SET `imagemTabuleiro` = @p1, `dtCriacao` = @p2, `corTematica` " +
-                "= @p3, `nomeTabuleiro` = @p4 WHERE ((`id` = @p5) AND (`imagemTabuleiro` = @p6) A" +
-                "ND (`dtCriacao` = @p7) AND (`corTematica` = @p8) AND (`nomeTabuleiro` = @p9))";
+            this._adapter.UpdateCommand.CommandText = "UPDATE `tabuleiro` SET `nomeTabuleiro` = @p1, `imagemTabuleiro` = @p2, `dtCriacao" +
+                "` = @p3, `corTematica` = @p4 WHERE ((`id` = @p5) AND (`nomeTabuleiro` = @p6) AND" +
+                " (`imagemTabuleiro` = @p7) AND (`dtCriacao` = @p8) AND (`corTematica` = @p9))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
-            param.SourceColumn = "imagemTabuleiro";
+            param.SourceColumn = "nomeTabuleiro";
             param.SourceVersion = global::System.Data.DataRowVersion.Current;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p2";
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "imagemTabuleiro";
+            param.SourceVersion = global::System.Data.DataRowVersion.Current;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p3";
             param.DbType = global::System.Data.DbType.Date;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Date;
             param.IsNullable = true;
@@ -3790,17 +3415,10 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Current;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p3";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "corTematica";
-            param.SourceVersion = global::System.Data.DataRowVersion.Current;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p4";
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
-            param.SourceColumn = "nomeTabuleiro";
+            param.SourceColumn = "corTematica";
             param.SourceVersion = global::System.Data.DataRowVersion.Current;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
@@ -3815,11 +3433,18 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             param.ParameterName = "@p6";
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
-            param.SourceColumn = "imagemTabuleiro";
+            param.SourceColumn = "nomeTabuleiro";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p7";
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.IsNullable = true;
+            param.SourceColumn = "imagemTabuleiro";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p8";
             param.DbType = global::System.Data.DbType.Date;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Date;
             param.IsNullable = true;
@@ -3827,17 +3452,10 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p8";
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "corTematica";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p9";
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
-            param.SourceColumn = "nomeTabuleiro";
+            param.SourceColumn = "corTematica";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
         }
@@ -3846,7 +3464,7 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = helper.Instancia.GetConnectionString();
+            this._connection.ConnectionString = global::JdoCRUD.Properties.Settings.Default.testedbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3855,7 +3473,7 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[1];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT `id`, `imagemTabuleiro`, `dtCriacao`, `corTematica`, `nomeTabuleiro` FROM " +
+            this._commandCollection[0].CommandText = "SELECT `id`, `nomeTabuleiro`, `imagemTabuleiro`, `dtCriacao`, `corTematica` FROM " +
                 "`tabuleiro`";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
@@ -3917,7 +3535,7 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int p1, string p2, System.DateTime p3, string p4, string p5) {
+        public virtual int Delete(int p1, string p2, string p3, System.DateTime p4, string p5) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(p1));
             if ((p2 == null)) {
                 throw new global::System.ArgumentNullException("p2");
@@ -3925,13 +3543,13 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             else {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(p2));
             }
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(p3));
-            if ((p4 == null)) {
-                throw new global::System.ArgumentNullException("p4");
+            if ((p3 == null)) {
+                throw new global::System.ArgumentNullException("p3");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(p4));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(p3));
             }
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((System.DateTime)(p4));
             if ((p5 == null)) {
                 throw new global::System.ArgumentNullException("p5");
             }
@@ -3958,20 +3576,20 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string p1, System.DateTime p2, string p3, string p4) {
+        public virtual int Insert(string p1, string p2, System.DateTime p3, string p4) {
             if ((p1 == null)) {
                 throw new global::System.ArgumentNullException("p1");
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(p1));
             }
-            this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(p2));
-            if ((p3 == null)) {
-                throw new global::System.ArgumentNullException("p3");
+            if ((p2 == null)) {
+                throw new global::System.ArgumentNullException("p2");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(p3));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(p2));
             }
+            this.Adapter.InsertCommand.Parameters[2].Value = ((System.DateTime)(p3));
             if ((p4 == null)) {
                 throw new global::System.ArgumentNullException("p4");
             }
@@ -3998,20 +3616,20 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string p1, System.DateTime p2, string p3, string p4, int p5, string p6, System.DateTime p7, string p8, string p9) {
+        public virtual int Update(string p1, string p2, System.DateTime p3, string p4, int p5, string p6, string p7, System.DateTime p8, string p9) {
             if ((p1 == null)) {
                 throw new global::System.ArgumentNullException("p1");
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(p1));
             }
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(p2));
-            if ((p3 == null)) {
-                throw new global::System.ArgumentNullException("p3");
+            if ((p2 == null)) {
+                throw new global::System.ArgumentNullException("p2");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(p3));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(p2));
             }
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((System.DateTime)(p3));
             if ((p4 == null)) {
                 throw new global::System.ArgumentNullException("p4");
             }
@@ -4025,13 +3643,13 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(p6));
             }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(p7));
-            if ((p8 == null)) {
-                throw new global::System.ArgumentNullException("p8");
+            if ((p7 == null)) {
+                throw new global::System.ArgumentNullException("p7");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(p8));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(p7));
             }
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(p8));
             if ((p9 == null)) {
                 throw new global::System.ArgumentNullException("p9");
             }
@@ -4332,7 +3950,7 @@ namespace JdoCRUD.jdoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = helper.Instancia.GetConnectionString();
+            this._connection.ConnectionString = global::JdoCRUD.Properties.Settings.Default.testedbConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
