@@ -40,7 +40,6 @@ namespace JdoCRUD.Forms
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeSkin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.imagemSkin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ehPermanente = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tipoPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.corTematica = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.skinBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -68,7 +67,6 @@ namespace JdoCRUD.Forms
             this.Cor,
             this.Tipo,
             this.imagemSkin,
-            this.ehPermanente,
             this.tipoPeca,
             this.corTematica});
             this.skinDataGridView.DataSource = this.skinBindingSource;
@@ -159,14 +157,6 @@ namespace JdoCRUD.Forms
             this.imagemSkin.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.imagemSkin.Visible = false;
             // 
-            // ehPermanente
-            // 
-            this.ehPermanente.DataPropertyName = "ehPermanente";
-            this.ehPermanente.HeaderText = "ehPermanente";
-            this.ehPermanente.Name = "ehPermanente";
-            this.ehPermanente.ReadOnly = true;
-            this.ehPermanente.Visible = false;
-            // 
             // tipoPeca
             // 
             this.tipoPeca.DataPropertyName = "tipoPeca";
@@ -242,7 +232,6 @@ namespace JdoCRUD.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn Cor;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn imagemSkin;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ehPermanente;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipoPeca;
         private System.Windows.Forms.DataGridViewTextBoxColumn corTematica;
     }

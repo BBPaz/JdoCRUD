@@ -177,8 +177,7 @@ namespace JdoCRUD.Forms
         private void btnRemover_Click(object sender, EventArgs e)
         {
             Tabuleiro tabuleiro = ConsolidarObjeto();
-            //TODO: Verificação de registros filhos
-            
+
             if (controller.VerificarRemovivel(tabuleiro.Id))
             {
                 DialogResult resposta = MessageBox.Show("Deseja remover o tabuleiro? Esta ação não pode ser revertida.", "Atenção", MessageBoxButtons.YesNo);

@@ -111,7 +111,6 @@ namespace JdoCRUD.DAO
                 skin.Id = int.Parse(row["id"].ToString());
                 skin.NomeSkin = row["nomeSkin"].ToString();
                 skin.ImagemSkin = row["imagemSkin"].ToString();
-                skin.EhPermanente = bool.Parse(row["ehPermanente"].ToString());
                 skin.TipoPeca = int.Parse(row["tipoPeca"].ToString());
                 skin.CorTematica = row["corTematica"].ToString();
 
@@ -140,7 +139,6 @@ namespace JdoCRUD.DAO
                     skin.Id = int.Parse(row["id"].ToString());
                     skin.NomeSkin = row["nomeSkin"].ToString();
                     skin.ImagemSkin = row["imagemSkin"].ToString();
-                    skin.EhPermanente = bool.Parse(row["ehPermanente"].ToString());
                     skin.TipoPeca = int.Parse(row["tipoPeca"].ToString());
                     skin.CorTematica = row["corTematica"].ToString();
                     skins.Add(skin);
@@ -156,15 +154,14 @@ namespace JdoCRUD.DAO
             con.ConnectionString = db.GetConnectionString();
             jdoDataSet set = new jdoDataSet();
 
-            string query = "insert into skin(nomeSkin, imagemSkin, ehPermanente, tipoPeca, corTematica) VALUES";
-            query += "(?nomeSkin, ?imagemSkin, ?ehPermanente, ?tipoPeca, ?corTematica)";
+            string query = "insert into skin(nomeSkin, imagemSkin,  tipoPeca, corTematica) VALUES";
+            query += "(?nomeSkin, ?imagemSkin, ?tipoPeca, ?corTematica)";
             try
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.AddWithValue("?nomeSkin", skin.NomeSkin);
                 cmd.Parameters.AddWithValue("?imagemSkin", skin.ImagemSkin);
-                cmd.Parameters.AddWithValue("?ehPermanente", skin.EhPermanente);
                 cmd.Parameters.AddWithValue("?tipoPeca", skin.TipoPeca);
                 cmd.Parameters.AddWithValue("?corTematica", skin.CorTematica);
                 cmd.ExecuteNonQuery();
@@ -180,7 +177,7 @@ namespace JdoCRUD.DAO
         {
             con = new MySqlConnection();
             con.ConnectionString = db.GetConnectionString();
-            string query = "update skin SET nomeSkin = ?nomeSkin, imagemSkin = ?imagemSkin, ehPermanente = ?ehPermanente, tipoPeca = ?tipoPeca, corTematica = ?corTematica";
+            string query = "update skin SET nomeSkin = ?nomeSkin, imagemSkin = ?imagemSkin, tipoPeca = ?tipoPeca, corTematica = ?corTematica";
             query += " WHERE id = ?id";
             try
             {
@@ -189,7 +186,6 @@ namespace JdoCRUD.DAO
                 cmd.Parameters.AddWithValue("?id", skin.Id);
                 cmd.Parameters.AddWithValue("?nomeSkin", skin.NomeSkin);
                 cmd.Parameters.AddWithValue("?imagemSkin", skin.ImagemSkin);
-                cmd.Parameters.AddWithValue("?ehPermanente", skin.EhPermanente);
                 cmd.Parameters.AddWithValue("?tipoPeca", skin.TipoPeca);
                 cmd.Parameters.AddWithValue("?corTematica", skin.CorTematica);
                 cmd.ExecuteNonQuery();
@@ -199,11 +195,6 @@ namespace JdoCRUD.DAO
             {
                 con.Close();
             }
-        }
-
-        internal bool IsRemovivelSkin(int id)
-        {
-            throw new NotImplementedException();
         }
 
         public Tabuleiro ConsultarTabuleiro(int id)
@@ -307,6 +298,35 @@ namespace JdoCRUD.DAO
             }
         }
 
+        public bool IsRemovivelSkin(int id)
+        {
+            List<Venda> vendas = new List<Venda>();
+            con = new MySqlConnection();
+            con.ConnectionString = db.GetConnectionString();
+
+            string query = string.Format("select * from venda where idSkin = {0}", id);
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, con))
+            {
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    Venda venda = new Venda();
+
+                    venda.Id = int.Parse(row["id"].ToString());
+                    venda.IdSeason = int.Parse(row["idSeason"].ToString());
+                    venda.IdSkin = int.Parse((row["idSkin"].ToString()));
+
+                    vendas.Add(venda);
+                }
+
+            }
+            return vendas.Count == 0;
+        }
+
         public bool IsRemovivelTabuleiro(int id)
         {
             List<Season> seasons = new List<Season>();
@@ -336,6 +356,35 @@ namespace JdoCRUD.DAO
 
             }
             return seasons.Count == 0;
+        }
+
+        public bool IsRemovivelSeason(int id)
+        {
+            List<Venda> vendas = new List<Venda>();
+            con = new MySqlConnection();
+            con.ConnectionString = db.GetConnectionString();
+
+            string query = string.Format("select * from venda where idSeason = {0}", id);
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, con))
+            {
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    Venda venda = new Venda();
+
+                    venda.Id = int.Parse(row["id"].ToString());
+                    venda.IdSeason = int.Parse(row["idSeason"].ToString());
+                    venda.IdSkin = int.Parse((row["idSkin"].ToString()));
+
+                    vendas.Add(venda);
+                }
+
+            }
+            return vendas.Count == 0;
         }
 
         public Season ConsultarSeason(int id)
@@ -387,6 +436,8 @@ namespace JdoCRUD.DAO
                     season.FimVigencia = DateTime.Parse(row["fimVigencia"].ToString());
                     season.IdTabuleiro = int.Parse(row["idTabuleiro"].ToString());
                     season.Prioridade = int.Parse(row["prioridade"].ToString());
+
+                    seasons.Add(season);
                 }
 
             }
@@ -477,6 +528,105 @@ namespace JdoCRUD.DAO
 
             }
             return seasons.Count == 0;
+        }        
+
+        public void InserirVenda(Venda venda)
+        {
+            con = new MySqlConnection();
+            con.ConnectionString = db.GetConnectionString();
+            jdoDataSet set = new jdoDataSet();
+
+            string query = "insert into venda(valor, idSeason, idSkin) VALUES";
+            query += "(?valor, ?idSeason, ?idSkin)";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?valor", venda.Valor);
+                cmd.Parameters.AddWithValue("?idSeason", venda.IdSeason);
+                cmd.Parameters.AddWithValue("?idSkin", venda.IdSkin);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public void AtualizarVenda(Venda venda)
+        {
+            con = new MySqlConnection();
+            con.ConnectionString = db.GetConnectionString();
+            string query = "update venda SET valor = ?valor, idSeason = ?idSeason, idSkin = ?idSkin";
+            query += " WHERE id = ?id";
+            try
+            {
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand(query, con);
+                cmd.Parameters.AddWithValue("?id", venda.Id); 
+                cmd.Parameters.AddWithValue("?valor", venda.Valor);
+                cmd.Parameters.AddWithValue("?idSeason", venda.IdSeason);
+                cmd.Parameters.AddWithValue("?idSkin", venda.IdSkin);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        public Venda ConsultarVenda(int id)
+        {
+            Venda venda = new Venda();
+            con = new MySqlConnection();
+            con.ConnectionString = db.GetConnectionString();
+
+            string query = string.Format("select * from venda where id = {0}", "'" + id + "'");
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, con))
+            {
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                DataRow row = dataTable.Rows[0];
+
+                venda.Id = int.Parse(row["id"].ToString());
+                venda.IdSeason = int.Parse(row["idSeason"].ToString());
+                venda.IdSkin = int.Parse((row["idSkin"].ToString()));
+            }
+            return venda;
+        }
+
+        public List<Venda> ConsultarVendas()
+        {
+            List<Venda> vendas = new List<Venda>();
+            con = new MySqlConnection();
+            con.ConnectionString = db.GetConnectionString();
+
+            string query = "select * from venda";
+
+            using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, con))
+            {
+
+                DataTable dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    Venda venda = new Venda();
+
+                    venda.Id = int.Parse(row["id"].ToString());
+                    venda.IdSeason = int.Parse(row["idSeason"].ToString());
+                    venda.IdSkin = int.Parse((row["idSkin"].ToString()));
+
+                    vendas.Add(venda);
+                }
+
+            }
+            return vendas;
         }
     }
 }

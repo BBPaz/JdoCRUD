@@ -185,32 +185,32 @@ namespace JdoCRUD.Forms
             //nome
             if (txtNomeSeason.Text.Length < 1)
             {
-                MessageBox.Show("Preencha o nome");
+                MessageBox.Show("Preencha o nome", "Atenção");
                 ok = false;
             }
             //datas
-            if(dtpDtInicio.Value < dtpDtFim.Value)
+            if(dtpDtInicio.Value > dtpDtFim.Value)
             {
-                MessageBox.Show("Data de início da vigência deve ocorrer antes da de final");
+                MessageBox.Show("Data de início da vigência deve ocorrer antes da de final", "Atenção");
                 ok = false;
             }
             //
             //prioridade
             if (numPrioridade.Text.Length < 1)
             {
-                MessageBox.Show("Defina o nivel de prioridade");
+                MessageBox.Show("Defina o nivel de prioridade", "Atenção");
                 ok = false;
             }
             //tabuleiro
             if (cbbTabuleiros.SelectedItem == null)
             {
-                MessageBox.Show("Selecione um tabuleiro");
+                MessageBox.Show("Selecione um tabuleiro", "Atenção");
                 ok = false;
             }
             //prioridade periodo
-            if (controller.VerificarDisponivel((int)numPrioridade.Value, dtpDtInicio.Value, dtpDtFim.Value))
+            if (!controller.VerificarDisponivel((int)numPrioridade.Value, dtpDtInicio.Value, dtpDtFim.Value))
             {
-                MessageBox.Show("Período selecionado não está disponível na prioridade definida. Escolha outro período ou mude a prioridade");
+                MessageBox.Show("Período selecionado não está disponível na prioridade definida. Escolha outro período ou mude a prioridade", "Atenção");
                 ok = false;
             }
 
@@ -270,6 +270,7 @@ namespace JdoCRUD.Forms
             int idTabuleiro = (cbbTabuleiros.SelectedItem as ItemTabuleiro).Value;
             new TabuleiroDetalhes(idTabuleiro).ShowDialog();
             CarregarTabuleiros();
+            //TODO: se deletado, deve limpar os dados do tabuleiro
             ExibirDadosTabuleiro(idTabuleiro);
         }
 
@@ -314,14 +315,14 @@ namespace JdoCRUD.Forms
             return true;
         }
 
-        public void Inserir(Season tabuleiro)
+        public void Inserir(Season season)
         {
-            dao.InserirSeason(tabuleiro);
+            dao.InserirSeason(season);
         }
 
-        public void Atualizar(Season tabuleiro)
+        public void Atualizar(Season season)
         {
-            dao.AtualizarSeason(tabuleiro);
+            dao.AtualizarSeason(season);
         }
 
         public string ConverterColorParaHex(Color c)
@@ -356,7 +357,7 @@ namespace JdoCRUD.Forms
 
         internal bool VerificarRemovivel(int id)
         {
-            throw new NotImplementedException();
+            return dao.IsRemovivelSeason(id);
         }
     }
 }

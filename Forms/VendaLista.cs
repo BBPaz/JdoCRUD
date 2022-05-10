@@ -44,7 +44,9 @@ namespace JdoCRUD.Forms
 
         private void btnDetalhes_Click(object sender, EventArgs e)
         {
-
+            DataGridViewRow row = vendaDataGridView.CurrentCell.OwningRow;
+            int id = int.Parse(vendaDataGridView.CurrentCell.OwningRow.Cells[0].Value.ToString());
+            DetalhesVenda(id);
         }
 
         private void btnAtualizar_Click(object sender, EventArgs e)
@@ -64,4 +66,5 @@ namespace JdoCRUD.Forms
             DetalhesVenda(id);
         }
     }
+
 }
